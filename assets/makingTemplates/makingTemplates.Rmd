@@ -1,0 +1,21 @@
+```{r echo=FALSE}
+library(monitoR)
+```
+
+# Making Templates
+Most of the template creation process is covered in the vignette (Quick Start Guide), but we can cover it once more here. Making templates is possibly the single most subjective aspect of automated detection, so users attempting to start a monitoring program will probably spend many hours making and testing templates.  
+
+The first step is to select a sound clip that we will use. A sound clip can be exported from `viewSpec()`, downloaded from a website, or recorded specifically for use as a template. When selecting a template and developing performance expectations it will be useful to understand how the template is used by the scoring functions.  
+Templates are evaluated at all time bins in the survey (left-to-right), but they are not evaluated at all frequency bins (up and down). Therefore if the target sound is always emitted within the same frequency band it may be possible to detect it reliably with a single template. On the other hand, if it is a stereotyped sound emitted with the same pattern but within different frequency bands, a template may need to be created for each frequency band.  
+
+For the purposes of this demonstration we will attempt to find song sparrow songs in a long recording. Song sparrows sing many songs per individual; any beginning ear-birder can hear any one of those songs and identify it as a song sparrow, but the plasticity within the species makes it a challenging example for a computer.  
+
+Here is the song example upon which we will base our first template.
+
+```{r}
+viewSpec('/home/jon/Documents/personalWebsite/monitoR/O11 0584_59.0625-66.5625.wav')
+```
+
+The package monitoR contains two template matching functions, but they do not use the same templates. To some extent they employ the same arguments, so we will explore only the binary point matching mthod.
+
+
