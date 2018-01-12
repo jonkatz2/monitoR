@@ -2,8 +2,6 @@
 layout: default
 ---
 
-<h1>monitoR</h1>
-<h3>An R package for automated and manual location of sounds in digital recordings</h3>
 <p style="font-size:large;">monitoR contains:</p>
 <ol>
     <li>A full-featured spectrogram viewer
@@ -33,6 +31,6 @@ layout: default
     </li>
 </ol>
 
-<p style="font-size:large;">New to R?</p>
+<p style="font-size:large;padding-top:3em;">New to R?</p>
 <p>R is free, open-source, and can be used on most operating systems. R comes with a core set of packages that allow it to be a useful statistical language and programming platform, plus there are thousands of user-contributed packages that extend the capability of the platform.</p>
 <p>Read more and download it at <a href="https://cran.r-project.org/" target="_blank">https://cran.r-project.org/</a>.

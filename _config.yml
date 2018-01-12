@@ -1,5 +1,5 @@
 title: monitoR
-description: automatic sound detection and manual spectrogram annotation in R
+description: spectrogram scross-correlation, binary point matching, and manual annotation in R
 show_downloads: false
 google_analytics:
 theme: jekyll-theme-slate
