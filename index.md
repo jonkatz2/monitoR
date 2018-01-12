@@ -6,8 +6,8 @@ layout: default
 <ol>
     <li>A full-featured spectrogram viewer
         <ul>
-            <li><a href="monitoR/assets/viewingSpectrograms/viewingSpectrograms.html">Browse spectrograms in an R graphics device</a></li>
-            <li><a href="monitoR/assets/annotatingSpectrograms/annotatingSpectrograms.html">Annotate sounds of interest</a></li>
+            <li><a href="assets/viewingSpectrograms/viewingSpectrograms.html">Browse spectrograms in an R graphics device</a></li>
+            <li><a href="assets/annotatingSpectrograms/annotatingSpectrograms.html">Annotate sounds of interest</a></li>
         </ul>
     </li>
     <li>Functions to create, modify, save, and use templates for automated detection
