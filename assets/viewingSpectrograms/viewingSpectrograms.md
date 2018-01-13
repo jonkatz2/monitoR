@@ -4,7 +4,8 @@ title : Annotating Spectrograms
 group: navigation
 ---    
 
-<span><a href="/monitoR/">home &gt;</a><p style="display:inline;">viewing spectrograms</p></span>  
+<a style="float:left;" href="/monitoR/">home &gt;</a>  
+<p style="display:inline;float:left;">viewing spectrograms</p>  
 # Viewing Spectrograms
 All functions in monitoR accept a consistent group of inputs; for example, all funtions read the same file types and specify axis limits using the same arguments. Hence, the argument names and values offered here as examples to nearly all plotting methods in monitoR. 
 
