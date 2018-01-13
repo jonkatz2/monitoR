@@ -1,7 +1,8 @@
 ---
 layout: default
 ---
-
+<p>home</p>
+ 
 <h1 style="font-size:large;">monitoR contains:</h1>
 <ol>
     <li>A full-featured spectrogram viewer
