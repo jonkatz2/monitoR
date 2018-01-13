@@ -5,7 +5,7 @@ group: navigation
 ---   
  
 <a style="float:left;margin-top:5px;" href="/monitoR/">home &gt;</a>  
-annotating spectrograms  
+<p>annotating spectrograms</p>  
 
 # Annotating Spectrograms
 Annotation is the process of manually identifying sounds of interest within an audio clip and labeling them. Annotation is possible within `viewSpec()` by setting the arguments `interactive=TRUE` and `annotate=TRUE`.
