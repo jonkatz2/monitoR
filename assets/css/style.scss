@@ -4,15 +4,17 @@
 @import "jekyll-theme-slate";
 
 .inner {
-    max-width:1000px;
+    max-width:100%;
 }
 
 #header_wrap .inner {
-    padding: 50px 10px 0px 10px;
+    padding: 50px 100px 0px 100px;
 }
 
 #main_content {
-    padding-top: 10px;
+    padding: 10px 100px 0px 100px;
 }
 
-
+#mainlist {
+    background-image: url("/home/jon/Documents/monitoR-dev/gh-pages/assets/images/semitrans.png");
+}
