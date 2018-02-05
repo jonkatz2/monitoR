@@ -87,7 +87,7 @@ function(
       ##pts[, 't'] <- round(pts[, 't']*template@t.step/t.step)
       ##if(warn) warning('For ', i,' time step doesn\'t match survey time step: ', t.step, ' != ', template@t.step)
     }
-    if(all.equal(template@frq.step, frq.step, tolerance=frq.step/1E6)) {
+    if(!all.equal(template@frq.step, frq.step, tolerance=frq.step/1E6)) {
       stop(i, ' frequency step does\'t match survey frequency step, ', frq.step, ' != ', template@frq.step, '. Adjust one or the other and try again.')
       #pts[, 'frq'] <- round(pts[, 'frq']*template@frq.step/frq.step)
       #if(warn) warning(i, ' frequency step does\'t match survey frequency step, ', frq.step, ' != ', template@frq.step)
