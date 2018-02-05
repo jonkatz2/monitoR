@@ -14,7 +14,7 @@
 
 \title{A short introduction to acoustic template matching with \texttt{monitoR}}
 \author{Sasha D. Hafner \\
-\small{University of Southern Denmark, Odense, Denmark (\texttt{saha@kbm.sdu.dk, sdh11@cornell.edu})}
+\small{University of Southern Denmark, Odense, Denmark (\texttt{sasha.hafner@eng.au.dk})}
 \vspace{3mm}\\
 and
 \vspace{3mm}\\
@@ -29,7 +29,7 @@ Jonathan Katz \\
 <<setup, include = FALSE, cache = FALSE>>=
 options(useFancyQuotes = FALSE)
 library(knitr)
-opts_chunk$set(comment = "#", out.height = "4.0in", out.width = "4.0in", fig.height = 5.2, fig.width = 5.2, fig.align = "center", cache = TRUE)
+opts_chunk$set(comment = "#", out.height = "4.0in", out.width = "4.0in", fig.height = 5.2, fig.width = 5.2, fig.align = "center", cache = FALSE)
 options(tidy = TRUE, width = 65)
 @
 
