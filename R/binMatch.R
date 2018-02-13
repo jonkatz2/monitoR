@@ -1,5 +1,5 @@
 # For calculating scores for binary template matching 
-# Modified: 6 Sept 2015
+# Modified: 2018 Feb 13
 
 binMatch <-
 function(
@@ -7,11 +7,12 @@ function(
   templates,              # Template list.
   parallel = FALSE,         # If TRUE, mclapply is used for score calculations, for parallel processing (works for Linux only). If FALSE laply is used.
   show.prog = FALSE,        # If TRUE, progress is displayed during correlation calculations 
-  warn = TRUE,              # If TRUE, will return a warning for time steps that don't match between the templates and the survey frequency-domain data.
+#  warn = TRUE,              # If TRUE, will return a warning for time steps that don't match between the templates and the survey frequency-domain data.
   time.source = 'filename', # 'filename' or 'fileinfo' as the mtime source
   rec.tz = NA,              # Time zone setting for recorders 
   write.wav = FALSE,        # Set to TRUE to allow creation of file of survey in working directory
   report.amp = FALSE,       # If TRUE, reports the on and off amplitudes (takes 3x as long)
+  quiet=FALSE,            # TRUE will suppress calls to cat()
   ...                     # Additional arguments to the spectro function
 ) {
 
@@ -23,6 +24,13 @@ function(
   if(parallel) {
     lapplyfun <- function(X, FUN) parallel::mclapply(X, FUN, mc.cores = parallel::detectCores()-1)
   } else lapplyfun <- lapply
+
+  # Quiet mode
+  if(quiet) {
+    catfun <- quietcat
+  } else {
+    catfun <- cat
+  }
 
   # Start tracking time (after loading packages)
   t.start <- Sys.time()
@@ -56,13 +64,13 @@ function(
 
   # Loop through templates
   for(i in names(templates@templates)) {
-    cat('\nStarting ', i,'. . .\n')
+    catfun('\nStarting ', i,'. . .\n')
 
     # Working with a single template
     template <- templates@templates[[i]]
 
     if(i == names(templates@templates)[1] || any(template@wl != wl, template@ovlp != ovlp, template@wn != wn)) {
-      cat('\n\tFourier transform on survey . . .')
+      catfun('\n\tFourier transform on survey . . .')
       wl <- template@wl
       ovlp <- template@ovlp
       wn <- template@wn
@@ -75,7 +83,7 @@ function(
       t.survey <- length(survey@left)/survey@samp.rate
       t.step <- t.bins[2] - t.bins[1]
       frq.step <- frq.bins[2] - frq.bins[1]
-      cat('\n\tContinuing. . .\n')
+      catfun('\n\tContinuing. . .\n')
     }
 
     # Switch the order of columns in pt.on and pt.off to use them directly for indexing
@@ -169,7 +177,7 @@ function(
       )
     }
     survey.data[[i]] <- list(amp = survey.spec$amp, t.bins = t.bins, frq.bins = frq.bins)
-    cat('\n\tDone.\n')
+    catfun('\n\tDone.\n')
   }
 
   # Calculate total run time

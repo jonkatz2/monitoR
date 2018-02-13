@@ -1,5 +1,5 @@
 # Based on seewave's spectro function, very few modifications
-# Modified: 2012 DEC 22
+# Modified: 2018 Feb 13
 
 spectro <-
 function (
@@ -10,7 +10,9 @@ function (
    ovlp = 0, 
    fftw = FALSE, 
    dB = "max0", 
-   dBref = NULL) 
+   dBref = NULL,
+   ... # dots permit users to keep arg 'warn' in calls to binMatch/corMatch
+   ) 
 {
     if (!is.null(dB) && all(dB != c("max0", "A", "B", "C", "D"))) 
         stop("'dB' has to be one of the following character strings: 'max0', 'A', 'B', 'C' or 'D'")
