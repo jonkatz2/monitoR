@@ -1,8 +1,8 @@
 Package: monitoR
 Type: Package
 Title: Acoustic Template Detection in R
-Version: 1.0.6
-Date: 2018-02-1x
+Version: 1.0.7
+Date: 2018-02-14
 Author: Sasha D. Hafner <sdh11@cornell.edu> and Jon Katz <jonkatz4@gmail.com>, with code for the Fourier transform from the seewave package (by Jerome Sueur, Thierry Aubin, and Caroline Simonis), and code for the readMP3 function from the tuneR package (by Uwe Ligges). Therese Donovan provided creative direction and database design support. 
 Maintainer: Sasha D. Hafner <sdh11@cornell.edu>
 Depends: tuneR, methods

@@ -14,7 +14,7 @@ These functions are used to calculate spectrogram template matching scores betwe
 corMatch(survey, templates, parallel = FALSE, show.prog = FALSE, cor.method = "pearson", 
          time.source = "filename", rec.tz = NA, write.wav = FALSE, quiet = FALSE, ...)
 
-binMatch(survey, templates, parallel = FALSE, show.prog = FALSE, time.source = "filename", 
+binMatch(survey, templates, parallel = FALSE, show.prog = FALSE, time.source = "filename",
          rec.tz = NA, write.wav = FALSE, report.amp = FALSE, quiet = FALSE, ...)
 
 }
