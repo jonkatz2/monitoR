@@ -1,6 +1,15 @@
 monitoR
 
 Version 1.0.7
+2018 Feb 13 Sasha D. Hafner
+
+monitoR_QuickStart.Rnw
+Removed reference to placeins and natbib packages.
+
+corMatch.R
+Added missing ! back in freq.step check. (Change made 8 days earlier)
+
+Version 1.0.7
 2018 Feb 13 Jon Katz
 
 corMatch.R and binMatch.R
