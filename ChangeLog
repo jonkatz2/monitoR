@@ -1,4 +1,15 @@
 monitoR
+
+Version 1.0.7
+2018 Feb 13 Jon Katz
+
+corMatch.R and binMatch.R
+Removed unused argument "warn"
+Added argument "quiet", when TRUE will suppress updates to the console: based on attempted merge by github user "gannebamm" at unofficial github repo
+
+spectro
+Added argument "/dots", allows users to include arg "warn" in calls to binMatch and corMatch
+
 Version 1.0.6 
 2017 June 23 Sasha D. Hafner
 

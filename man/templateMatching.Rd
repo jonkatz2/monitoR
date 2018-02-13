@@ -12,11 +12,10 @@ These functions are used to calculate spectrogram template matching scores betwe
 
 \usage{
 corMatch(survey, templates, parallel = FALSE, show.prog = FALSE, cor.method = "pearson", 
-         warn = TRUE, time.source = "filename", rec.tz = NA, write.wav = FALSE, ...)
+         time.source = "filename", rec.tz = NA, write.wav = FALSE, quiet = FALSE, ...)
 
-binMatch(survey, templates, parallel = FALSE, show.prog = FALSE, warn = TRUE, 
-         time.source = "filename", rec.tz = NA, write.wav = FALSE, report.amp = FALSE, 
-         ...)
+binMatch(survey, templates, parallel = FALSE, show.prog = FALSE, time.source = "filename", 
+         rec.tz = NA, write.wav = FALSE, report.amp = FALSE, quiet = FALSE, ...)
 
 }
 
@@ -50,10 +49,6 @@ binMatch(survey, templates, parallel = FALSE, show.prog = FALSE, warn = TRUE,
     For \code{corMatch}, the method used to calculate correlation coefficients (see \code{?cor}).
   }
 
-  \item{warn}{
-    Set to \code{FALSE} to suppress warnings about time bin duration and frequency bin span mismatches. 
-  }
-
   \item{time.source}{
     The source of date and time information.
     \code{filename} will look in the name of the survey file (\code{survey} argument) for a date and time with format YYYY-MM-DD_HHMMSS_TimeZone.
@@ -68,6 +63,10 @@ binMatch(survey, templates, parallel = FALSE, show.prog = FALSE, warn = TRUE,
 
   \item{report.amp}{
     If \code{TRUE}, \code{binMatch} will return the mean ``on'' and ``off'' amplitudes as well as their difference (the score). See details.
+  }
+
+  \item{quiet}{
+    Use \code{TRUE} to suppress status updates to the console. Does not suppress messages or warnings.
   }
 
   \item{\dots}{
