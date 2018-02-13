@@ -1,20 +1,17 @@
 \documentclass{article}
 \usepackage[margin = 1.2in]{geometry}
 \usepackage{float}
-\usepackage{placeins}
-\usepackage{natbib}
 \usepackage[colorlinks = true, urlcolor = blue]{hyperref} % Must be loaded as the last package
-%\hypersetup{colorlinks}
+\hypersetup{colorlinks}
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{monitoR Quick Start}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{5pt plus 1pt minus 1pt}
-\setcitestyle{round}
 
 \title{A short introduction to acoustic template matching with \texttt{monitoR}}
 \author{Sasha D. Hafner \\
-\small{University of Southern Denmark, Odense, Denmark (\texttt{sasha.hafner@eng.au.dk})}
+\small{Aarhus University, Aarhus, Denmark (\texttt{sasha.hafner@eng.au.dk})}
 \vspace{3mm}\\
 and
 \vspace{3mm}\\
@@ -387,7 +384,8 @@ Although the resulting plot isn't shown here, again, to keep this file size down
 }.
 
 <<fig.keep = 'none'>>=
-wbt2 <- makeBinTemplate(btnw.fp, amp.cutoff = -30, t.lim = c(1.5, 2.1), frq.lim = c(4.2, 5.6), buffer = 2, name = "w2")
+wbt2 <- makeBinTemplate(btnw.fp, amp.cutoff = -30, t.lim = c(1.5, 2.1), 
+                        frq.lim = c(4.2, 5.6), buffer = 2, name = "w2")
 @
 
 The \texttt{amp.cutoff} and \texttt{buffer} values used above are based on trial-and-error not shown here. 
@@ -395,8 +393,10 @@ The \texttt{amp.cutoff} and \texttt{buffer} values used above are based on trial
 Let's also make two ovenbird templates, with and without a buffer.
 
 <<fig.keep = 'none'>>=
-obt1 <- makeBinTemplate(oven.fp, amp.cutoff = -20, t.lim = c(1, 4), frq.lim = c(1, 11), name = "o1")
-obt2 <- makeBinTemplate(oven.fp, amp.cutoff = -17, t.lim = c(1, 4), frq.lim = c(1, 11), buffer = 2, name = "o2")
+obt1 <- makeBinTemplate(oven.fp, amp.cutoff = -20, t.lim = c(1, 4), 
+                        frq.lim = c(1, 11), name = "o1")
+obt2 <- makeBinTemplate(oven.fp, amp.cutoff = -17, t.lim = c(1, 4), 
+                        frq.lim = c(1, 11), buffer = 2, name = "o2")
 @
 
 Binary templates are combined with \texttt{combineBinTemplates}.
