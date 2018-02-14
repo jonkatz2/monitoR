@@ -1,4 +1,20 @@
 --------------------------------------------------------------------------------
+monitoR 1.0.7
+2018 February 14
+--------------------------------------------------------------------------------
+
+NEW ARGUMENTS
+*corMatch() and binMatch() now have a "quiet" argument that will suppress console
+messages when set to TRUE (thanks to GitHub user gannebamm). The unused warn 
+argument has been removed.
+
+*spectro() has a new "..." argument. Now "warn" could be used and passed to 
+binMatch() and corMatch() functions.
+
+BUG FIXES
+*Minor fixes
+
+--------------------------------------------------------------------------------
 monitoR 1.0.5
 2017 February 17
 --------------------------------------------------------------------------------
