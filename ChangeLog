@@ -4,7 +4,8 @@ Version 1.0.8
 2018 April 28 Sasha D. Hafner
 
 cutWave.R
-Error now thrown if `from` or `to` are > duration.
+Error now thrown if `from` or `to` arguments are greater than duration of wave
+object.
 
 Version 1.0.7
 2018 Feb 13 Sasha D. Hafner

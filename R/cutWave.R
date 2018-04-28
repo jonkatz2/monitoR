@@ -13,7 +13,9 @@ function(
   # Check for from or to beyond original length
   dur <- length(wave@left)/wave@samp.rate
   # NTS: Should next line be a warning?
-  if(from > dur | to > dur) stop('Argument `from` or `to` is greater than original duration ', signif(dur, 5), ' s. Reduce value and try again')
+  if(from > dur | to > dur) {
+      stop('Argument `from` or `to` is greater than original duration of ', signif(dur, 5), ' s.\n  Reduce value and try again.')
+  }
 
   i.from <- floor(from*wave@samp.rate)
   i.to <- ceiling(to*wave@samp.rate)
