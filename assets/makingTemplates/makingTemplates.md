@@ -10,22 +10,17 @@ Templates are evaluated at all time bins in the survey (left-to-right), but they
 A sound clip that will be used for a template must be recorded at the same sampling rate as the surveys.  
 
 For this example we will use the recordings that come with the package. The package contains two template matching functions, but they do not use the same template structure. To some extent they employ the same arguments, so we will pay careful attention to how the binary point matching method differs from the spectrogram cross-correlation method.  
-<div class="container">
-<div class="row">
-<div class="col-md-6">
+
 Binary point matching:  
   > Three methods of selecting points in a template  
   > Template consists of "on" and "off" point locations  
   > Scoring is difference between on and off points (signal to noise difference) in the survey  
-</div>
-<div class="col-md-6">  
+  
 Spectrogram cross-correlation:  
   > Three methods of selecting points in a template  
   > Template consists of only "points" and their locations  
   > Scoring is based on correlation of amplitude values between the template and the survey  
-</div>
-</div>
-</div>
+
 First load the black-throated green warbler song included with the package.  
 
 ```r
@@ -45,9 +40,6 @@ The three methods of selecting points in the template creation process are:
 Automatic is the default because it does not require interactivity and allows the package vignette and examples to build. In general use it is unlikely that users will build the most effective templates with the "auto" option.  
 
 
-```
-## [1] TRUE
-```
 
 ```r
 t1_auto <- makeBinTemplate(btnw, frq.lim=c(2, 8.4), amp.cutoff=-34, name='t1_auto', write.wav=TRUE)
