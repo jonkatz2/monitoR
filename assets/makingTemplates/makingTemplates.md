@@ -1,6 +1,4 @@
-```{r echo=FALSE}
-library(monitoR)
-```
+
 
 # Making Templates
 Most of the template creation process is covered in the vignette (Quick Start Guide), but we can cover it once more here. Making templates is possibly the single most subjective aspect of automated detection, so users attempting to start a monitoring program will probably spend many hours making and testing templates.  
@@ -24,11 +22,14 @@ Spectrogram cross-correlation:
   > Scoring is based on correlation of amplitude values between the template and the survey  
 
 First load the black-throated green warbler song included with the package.  
-```{r}
+
+```r
 library(monitoR)
 data(btnw)
 viewSpec(btnw)
 ```
+
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
 
 ## Binary point matching templates
 The three methods of selecting points in the template creation process are:  
@@ -38,18 +39,46 @@ The three methods of selecting points in the template creation process are:
   
 Automatic is the default because it does not require interactivity and allows the package vignette and examples to build. In general use it is unlikely that users will build the most effective templates with the "auto" option.  
 
-```{r echo=FALSE}
-if(file.exists('btnw.wav')) file.remove('btnw.wav')
-```
-```{r}
+
+
+```r
 t1_auto <- makeBinTemplate(btnw, frq.lim=c(2, 8.4), amp.cutoff=-34, name='t1_auto', write.wav=TRUE)
+```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
+
+```
+## 
+## Automatic point selection.
+## 
+## Done.
+```
+
+```r
 t1_auto
+```
+
+```
+## 
+## Object of class "binTemplateList"
+## 
+## 	containing  1  templates
+##         original.recording sample.rate lower.frequency upper.frequency
+## t1_auto           btnw.wav       24000        2.015625        8.390625
+##         duration on.points off.points score.cutoff
+## t1_auto     2.97       708      18472           12
+```
+
+```r
 plot(t1_auto)
 ```
 
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-2.png)
+
 The interactive options require the user to select cells from an image plot of a spectrogram. The "cell" option adds a single point per click and is probably suited for templates with few points. The "rectangle" option collects all points between two clicks, which define the upper-left and lower-right corners or a rectangle. Selection between the 
 
-```{r eval=FALSE}
+
+```r
 t1_rect <- makeBinTemplate(btnw, frq.lim=c(2, 8.4), select='rect', name='t1_rect', write.wav=TRUE)
 ```
 ```
@@ -131,13 +160,28 @@ hh
 ```
 ![t1_rect_start](img/t1_rect_off2.png)
 
-```{r echo=FALSE}
-t1_rect <- readBinTemplates(files='t1_rect.bt')
-```
-```{r}
+
+
+```r
 t1_rect
+```
+
+```
+## 
+## Object of class "binTemplateList"
+## 
+## 	containing  1  templates
+##         original.recording sample.rate lower.frequency upper.frequency
+## t1_rect           btnw.wav       24000        2.296875        8.109375
+##         duration on.points off.points score.cutoff
+## t1_rect      2.9       708       1525           12
+```
+
+```r
 plot(t1_rect)
 ```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
 
 
 

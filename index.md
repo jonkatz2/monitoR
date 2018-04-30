@@ -13,7 +13,7 @@ layout: default
         </li>
         <li>Functions to create, modify, save, and use templates for automated detection
             <ul>
-                <li>Methods for selecting points</li>
+                <li><a href="assets/makingTemplates/makingTemplates.html">Methods for selecting points</a></li>
                 <li>Plotting templates</li>
                 <li>Writing/reading templates</li>
                 <li>Comparing template performance</li>
