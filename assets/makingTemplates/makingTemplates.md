@@ -10,7 +10,8 @@ Templates are evaluated at all time bins in the survey (left-to-right), but they
 A sound clip that will be used for a template must be recorded at the same sampling rate as the surveys.  
 
 For this example we will use the recordings that come with the package. The package contains two template matching functions, but they do not use the same template structure. To some extent they employ the same arguments, so we will pay careful attention to how the binary point matching method differs from the spectrogram cross-correlation method.  
-<div class="fluidrow">
+<div class="container">
+<div class="row">
 <div class="col-md-6">
 Binary point matching:  
   > Three methods of selecting points in a template  
@@ -22,6 +23,7 @@ Spectrogram cross-correlation:
   > Three methods of selecting points in a template  
   > Template consists of only "points" and their locations  
   > Scoring is based on correlation of amplitude values between the template and the survey  
+</div>
 </div>
 </div>
 First load the black-throated green warbler song included with the package.  
