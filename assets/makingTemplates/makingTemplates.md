@@ -1,18 +1,4 @@
 
-```
-## Loading required package: tuneR
-```
-
-```
-## 
-## Attaching package: 'monitoR'
-```
-
-```
-## The following object is masked from 'package:tuneR':
-## 
-##     readMP3
-```
 
 # Making Templates
 Most of the template creation process is covered in the vignette (Quick Start Guide), but we can cover it once more here. Making templates is possibly the single most subjective aspect of automated detection, so users attempting to start a monitoring program will probably spend many hours making and testing templates.  
@@ -26,16 +12,20 @@ A sound clip that will be used for a template must be recorded at the same sampl
 For this example we will use the recordings that come with the package. The package contains two template matching functions, but they do not use the same template structure. To some extent they employ the same arguments, so we will pay careful attention to how the binary point matching method differs from the spectrogram cross-correlation method.  
 <div class="row">
 <div class="col-md-6">
-Binary point matching:  
-  > Three methods of selecting points in a template  
-  > Template consists of "on" and "off" point locations  
-  > Scoring is difference between on and off points (signal to noise difference) in the survey  
+<h3>Binary point matching:</h3>
+<ol>  
+  <li> Three methods of selecting points in a template </li>  
+  <li> Template consists of "on" and "off" point locations </li>  
+  <li> Scoring is difference between on and off points (signal to noise difference) in the survey </li>  
+</ol>
 </div>
 <div class="col-md-6">
-Spectrogram cross-correlation:  
-  > Three methods of selecting points in a template  
-  > Template consists of only "points" and their locations  
-  > Scoring is based on correlation of amplitude values between the template and the survey  
+<h3>Spectrogram cross-correlation:</h3>
+<ol>  
+  <li> Three methods of selecting points in a template </li>  
+  <li> Template consists of only "points" and their locations </li>  
+  <li> Scoring is based on correlation of amplitude values between the template and the survey </li>
+</ol>  
 </div>
 </div>
 First load the black-throated green warbler song included with the package.  
