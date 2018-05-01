@@ -1,20 +1,9 @@
----
-title: "Making Templates"
-output:
-  html_document:
-    toc: true
-    toc_float: true
-    toc_depth: 4
-    keep_md: true
-    self_contained: false
----
 
 
 
 
 
-
-
+# Making Templates
 Most of the template creation process is covered in the vignette (Quick Start Guide), but we can cover it once more here. Making templates is possibly the single most subjective aspect of automated detection, so users attempting to start a monitoring program will probably spend many hours making and testing templates.  
 
 The first step is to select a sound clip that we will use. A sound clip can be exported from `viewSpec()`, downloaded from a website, or recorded specifically for use as a template. When selecting a template and developing performance expectations it will be useful to understand how the template is used by the scoring functions.  
@@ -52,7 +41,7 @@ data(btnw)
 viewSpec(btnw)
 ```
 
-![](makingTemplates_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
 
 ## Binary point matching templates
 The three methods of selecting points in the template creation process are:  
@@ -71,7 +60,7 @@ Automatic is the default because it does not require interactivity and allows th
 t1_auto <- makeBinTemplate(btnw, frq.lim=c(2, 8.4), amp.cutoff=-34, name='t1_auto', write.wav=TRUE)
 ```
 
-![](makingTemplates_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
 
 ```
 ## 
@@ -104,7 +93,7 @@ Plot the template to see how it fits on the original sound clip. To keep templat
 plot(t1_auto)
 ```
 
-![](makingTemplates_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
 
 ### Manual template creation 
 The steps you will use in this process are:  
@@ -248,7 +237,7 @@ t1_rect
 plot(t1_rect)
 ```
 
-![](makingTemplates_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png)
 
 After a template has been made, you may wish to:  
 
