@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Making Templates</title>
+
+<script src="/assets/md_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="/assets/md_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="/assets/md_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="/assets/md_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="/assets/md_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="/assets/md_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="/assets/md_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="/assets/md_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="/assets/md_libs/navigation-1.1/tabsets.js"></script>
+<link href="/assets/md_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="/assets/md_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Making Templates</h1>
+
+</div>
+
+
+<p>Most of the template creation process is covered in the vignette (Quick Start Guide), but we can cover it once more here. Making templates is possibly the single most subjective aspect of automated detection, so users attempting to start a monitoring program will probably spend many hours making and testing templates.</p>
+<p>The first step is to select a sound clip that we will use. A sound clip can be exported from <code>viewSpec()</code>, downloaded from a website, or recorded specifically for use as a template. When selecting a template and developing performance expectations it will be useful to understand how the template is used by the scoring functions.</p>
+<p>Templates are evaluated at all time bins in the survey (left-to-right), but they are not evaluated at all frequency bins (up and down). Therefore if the target sound is always emitted within the same frequency band it may be possible to detect it reliably with a single template. On the other hand, if it is a stereotyped sound emitted with the same pattern but within different frequency bands, a template may need to be created for each frequency band.</p>
+<p>A sound clip that will be used for a template must be recorded at the same sampling rate as the surveys.</p>
+<p>For this example we will use the recordings that come with the package. The package contains two template matching functions, but they do not use the same template structure. To some extent they employ the same arguments, so we will pay careful attention to how the binary point matching method differs from the spectrogram cross-correlation method.</p>
+<div class="row">
+<div class="col-md-6">
+<h3>
+Binary point matching:
+</h3>
+<ol>
+<li>
+Three methods of selecting points in a template
+</li>
+<li>
+Template consists of “on” and “off” point locations
+</li>
+<li>
+Scoring is difference between on and off points (signal to noise difference) in the survey
+</li>
+</ol>
+</div>
+<div class="col-md-6">
+<h3>
+Spectrogram cross-correlation:
+</h3>
+<ol>
+<li>
+Three methods of selecting points in a template
+</li>
+<li>
+Template consists of only “points” and their locations
+</li>
+<li>
+Scoring is based on correlation of amplitude values between the template and the survey
+</li>
+</ol>
+</div>
+</div>
+<p>First load the black-throated green warbler song included with the package.</p>
+<pre class="r"><code>library(monitoR)
+data(btnw)
+viewSpec(btnw)</code></pre>
+<p><img src="makingTemplates_files/figure-html/unnamed-chunk-2-1.png" /><!-- --></p>
+<div id="binary-point-matching-templates" class="section level2">
+<h2>Binary point matching templates</h2>
+<p>The three methods of selecting points in the template creation process are:</p>
+<ul>
+<li>Automatic (default, “auto”)<br />
+</li>
+<li>Rectangular area selection (“rectangle”)<br />
+</li>
+<li>Individual point selection (“cell”)</li>
+</ul>
+<div id="automatic-template-creation" class="section level3">
+<h3>Automatic template creation</h3>
+<p>Automatic is the default because it does not require interactivity and allows the package vignette and examples to build. In general use it is unlikely that users will build the most effective templates with the “auto” option.</p>
+<pre class="r"><code>t1_auto &lt;- makeBinTemplate(btnw, frq.lim=c(2, 8.4), amp.cutoff=-34, name=&#39;t1_auto&#39;, write.wav=TRUE)</code></pre>
+<p><img src="makingTemplates_files/figure-html/unnamed-chunk-4-1.png" /><!-- --></p>
+<pre><code>## 
+## Automatic point selection.
+## 
+## Done.</code></pre>
+<p>Printing the template yields a description of the contents of the template. The printed stats can be helpful when attempting to balance the number of “on” and “off” points. For example, too many “off” points relative to the number of “on” points may allow the template to accept (with higher-than-expected scores) signals that are not isolated within the designated “on” regions. This could yield excessive false positive detections.</p>
+<pre class="r"><code>t1_auto</code></pre>
+<pre><code>## 
+## Object of class &quot;binTemplateList&quot;
+## 
+##  containing  1  templates
+##         original.recording sample.rate lower.frequency upper.frequency
+## t1_auto           btnw.wav       24000        2.015625        8.390625
+##         duration on.points off.points score.cutoff
+## t1_auto     2.97       708      18472           12</code></pre>
+<p>Plot the template to see how it fits on the original sound clip. To keep templates lightweight the original clip is not stored within the template but as a file path. When the clip is a wave object rather than a file path, the clip is saved to the working directory as long as the argument <code>write.wav=TRUE</code> (if <code>write.wav=FALSE</code>, the function will yield an error).</p>
+<pre class="r"><code>plot(t1_auto)</code></pre>
+<p><img src="makingTemplates_files/figure-html/unnamed-chunk-6-1.png" /><!-- --></p>
+</div>
+<div id="manual-template-creation" class="section level3">
+<h3>Manual template creation</h3>
+<p>The steps you will use in this process are:</p>
+<ol style="list-style-type: decimal">
+<li>Amplitude cutoff selection (can be specified in the function call).<br />
+</li>
+<li>“On” point selection.<br />
+</li>
+<li>“Off” point selection.</li>
+</ol>
+<div id="amplitude-cutoff-selection" class="section level4">
+<h4>Amplitude cutoff selection</h4>
+<p>The “binary” part of binary point matching refers to step one of template creation, which sets an amplitude threshold for the song clip spectrogram. All values with an amplitude equal or greater than the threshold get a value of 1, and all values below the threshold get a value of 0. In the automatic template above we specified the amplitude threshold (<code>amp.cutoff=-34</code>) in the function call, but if you use the default value (<code>amp.cutoff=&quot;i&quot;</code>) the first step of template creation will be to set the amplitude threshold interactively.</p>
+<p>Use between 1 and 5 “h” characters (pressing enter between entries — <code>h</code> is a little, <code>hhhhh</code> is a lot) to raise the threshold, and between 1 and 5 “l” characters (again pressing enter between entries) to lower the threshold. This process will loop continuously allowing you to raise and lower the threshold as much as necessary. When you are satisfied press enter again to end the loop.</p>
+<p>The name that will be displayed in all detection output and some spectrogram parameters are specified in the function call as well.</p>
+<pre class="r"><code>t1_rect &lt;- makeBinTemplate(btnw, frq.lim=c(2, 8.4), select=&#39;rect&#39;, name=&#39;t1_rect&#39;, write.wav=TRUE)</code></pre>
+<pre><code>## Interactive amplitude cutoff selection.
+## Enter l, ll, ll, etc. for lower cutoff, 
+## h, hh, hhh, etc. for higher cutoff, 
+## or hit Enter to continue
+
+## Current cutoff: -49</code></pre>
+<div class="figure">
+<img src="img/t1_rect_start.png" />
+
+</div>
+<pre><code>## Current cutoff: -49
+hhh
+
+## Current cutoff: -43
+hh
+
+## Current cutoff: -40
+hh
+
+## Current cutoff: -37
+hh
+
+## Current cutoff: -34</code></pre>
+<div class="figure">
+<img src="img/t1_rect_setAmp.png" />
+
+</div>
+</div>
+<div id="on-point-selection" class="section level4">
+<h4>“On” point selection</h4>
+<p>The interactive options require the user to select cells from an image plot of a spectrogram. The “cell” option adds a single point per click and is probably suited for templates with few points. The “rectangle” option collects all points between two clicks, which define the upper-left and lower-right corners or a rectangle.</p>
+<p>In this call we’ve used <code>select=&quot;rect&quot;</code>, which is equivalent to <code>select=&quot;rectangle&quot;</code>.</p>
+<p>Just as the amplitude selection was a continuous loop until broken by pressing enter without an entry, point selection is a continous loop until broken with a right click in the graphics device. Since we have a very clean recording of our call we can simply select all points with one large rectangle (start with the upper left corner, then select the lower right corner) and then right click to move on.</p>
+<p>This is possible because on point selection only selects cells with a value of 1.</p>
+<pre><code>## Select upper left corner of &quot;on&quot; rectangle with a left click.
+## Right click to continue.
+
+## Select lower right corner of &quot;on&quot; rectangle with a left click.
+
+## Select upper left corner of &quot;on&quot; rectangle with a left click.
+## Right click to continue.</code></pre>
+<div class="figure">
+<img src="img/t1_rect_onSel.png" />
+
+</div>
+</div>
+<div id="off-point-selection" class="section level4">
+<h4>“Off” point selection</h4>
+<p>Off point selection is a bit more complicated because we will not use one big rectangle but multiple selections, starting with the upper left corner and then selecting the lower right corner for each selection.</p>
+<p>Off point selection only selects cells with a value of 0. If we want to select cells adjacent to the on points we can do that, or we could have opted for a buffer in the function call (default is <code>buffer=0</code>).</p>
+<pre><code>## Select upper left corner of &quot;off&quot; rectangle with a left click.
+## Right click to continue.
+
+## Select lower right corner of &quot;off&quot; rectangle with a left click.</code></pre>
+<div class="figure">
+<img src="img/t1_rect_off1.png" />
+
+</div>
+<pre><code>
+## Select upper left corner of &quot;off&quot; rectangle with a left click.
+## Right click to continue.
+
+## Select lower right corner of &quot;off&quot; rectangle with a left click.
+
+## Select upper left corner of &quot;off&quot; rectangle with a left click.
+## Right click to continue.
+
+## Select lower right corner of &quot;off&quot; rectangle with a left click.
+
+## Select upper left corner of &quot;off&quot; rectangle with a left click.
+## Right click to continue.
+
+## Select lower right corner of &quot;off&quot; rectangle with a left click.
+
+## Select upper left corner of &quot;off&quot; rectangle with a left click.
+## Right click to continue.
+
+## Select lower right corner of &quot;off&quot; rectangle with a left click.
+
+## Select upper left corner of &quot;off&quot; rectangle with a left click.
+## Right click to continue.
+
+## Select lower right corner of &quot;off&quot; rectangle with a left click.
+
+## Select upper left corner of &quot;off&quot; rectangle with a left click.
+## Right click to continue.</code></pre>
+<div class="figure">
+<img src="img/t1_rect_off2.png" />
+
+</div>
+<p>The signal component of this clip is only about 1 second long, but I’ve artificially extended the template duration to about 3 seconds by selecting some tiny off points at the edges. I did this because the peak detecting algorithm (in <code>findPeaks()</code>) will yield a value for each template duration in the survey. If you are planning to sort through the peaks (e.g. to identify false negatives at a score threshold), this may yield more manageable results since a 1 second long template will yield roughly 600 peaks in a survey, while a 3 second long template will yield about 200 peaks. The scoring algorithm (in function <code>binMatch()</code>) returns only the center time of each score, so I’ve taken some care to maintain the center of the template in the center of the signal component.</p>
+<pre class="r"><code>t1_rect</code></pre>
+<pre><code>## 
+## Object of class &quot;binTemplateList&quot;
+## 
+##  containing  1  templates
+##         original.recording sample.rate lower.frequency upper.frequency
+## t1_rect           btnw.wav       24000        2.296875        8.109375
+##         duration on.points off.points score.cutoff
+## t1_rect      2.9       708       1525           12</code></pre>
+<pre class="r"><code>plot(t1_rect)</code></pre>
+<p><img src="makingTemplates_files/figure-html/unnamed-chunk-9-1.png" /><!-- --></p>
+<p>After a template has been made, you may wish to:</p>
+<ul>
+<li>Rename the template: use the assignment function <code>templateNames()&lt;-</code><br />
+</li>
+<li>Change the score cutoff: use the assignment function <code>templateCutoff()&lt;-</code><br />
+</li>
+<li>Add a comment (e.g. clip source, performance results, etc.): use the assignment function <code>templateComment()&lt;-</code><br />
+</li>
+<li>Move the clip location: use the assignment function <code>templatePath()&lt;-</code><br />
+</li>
+<li>Save the template to disk: use the function <code>writeBinTemplates()</code></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
