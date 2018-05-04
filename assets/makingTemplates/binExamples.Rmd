@@ -2,7 +2,7 @@
 These examples explore arguments beyond `select`. To see examples with `select` <a href="makingBinTemplates.html" target="_blank">read the longer article.</a>
 
 ```{r include=FALSE}
-opts_chunk$set(fig.show='hold', warning=FALSE)
+opts_chunk$set(fig.show='hold', warning=FALSE, results='hide')
 ```
 
 ### Get clip, write to file
@@ -39,7 +39,7 @@ template <- makeBinTemplate('btnw.wav', buffer = 4, amp.cutoff = -35)
 plot(template)
 ```
 
-### Change seelction density
+### Change selection density
 ```{r example5}
 template <- makeBinTemplate('btnw.wav', dens = 0.4, amp.cutoff = -35)
 plot(template)
@@ -48,6 +48,12 @@ plot(template)
 ### Change FFT parameters
 ```{r example6}
 template <- makeBinTemplate('btnw.wav', wl = 1024, ovlp = 75, amp.cutoff = -35)
+plot(template)
+```
+
+### Change template name
+```{r example6_1}
+template <- makeBinTemplate('btnw.wav', name='btnw_typeB_5kHz', amp.cutoff = -35)
 plot(template)
 ```
 
@@ -86,3 +92,15 @@ template <- readBinTemplates('intersect.bt')
 ```{r example8}
 plot(template)
 ```
+
+### Combine templates
+```{r example9, fig.show='hide'}
+template1 <- makeBinTemplate('btnw.wav', name='btnw_typeB_5kHz', amp.cutoff = -35)
+template2 <- makeBinTemplate('btnw2.wav', name='btnw_typeB_5.8kHz', amp.cutoff = -35)
+```
+```{r example9_1}
+templates <- combineBinTemplates(template1, template2)
+plot(templates, ask=FALSE)
+```
+
+

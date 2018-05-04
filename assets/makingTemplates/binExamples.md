@@ -4,6 +4,7 @@ title : binTemplate examples
 group: navigation
 ---  
 
+
 ## Making Binary Point Templates
 These examples explore arguments beyond `select`. To see examples with `select` <a href="makingBinTemplates.html" target="_blank">read the longer article.</a>
 
@@ -20,33 +21,22 @@ tuneR::writeWave(btnw, 'btnw.wav')
 
 ```r
 template <- makeBinTemplate('btnw.wav', amp.cutoff = -45)
-```
-
-```r
 plot(template)
 ```
-![plot of chunk example1](figure/example1-1.png)![plot of chunk example1](figure/example1-2.png)
 
+![plot of chunk example1](figure/example1-1.png)![plot of chunk example1](figure/example1-2.png)
 
 ```r
 template <- makeBinTemplate('btnw.wav', amp.cutoff = -25)
-```
-
-```r
 plot(template)
 ```
 
-![plot of chunk example1](figure/example1-3.png)![plot of chunk example1](figure/example1-4.png)
+![plot of chunk example1_1](figure/example1_1-1.png)![plot of chunk example1_1](figure/example1_1-2.png)
 
 ### Change time limits
 
 ```r
 template <- makeBinTemplate('btnw.wav', t.lim = c(0.75, 2.25), amp.cutoff = -35)
-```
-
-
-
-```r
 plot(template)
 ```
 
@@ -56,11 +46,6 @@ plot(template)
 
 ```r
 template <- makeBinTemplate('btnw.wav', frq.lim = c(3, 7), amp.cutoff = -35)
-```
-
-
-
-```r
 plot(template)
 ```
 
@@ -70,25 +55,15 @@ plot(template)
 
 ```r
 template <- makeBinTemplate('btnw.wav', buffer = 4, amp.cutoff = -35)
-```
-
-
-
-```r
 plot(template)
 ```
 
 ![plot of chunk example4](figure/example4-1.png)![plot of chunk example4](figure/example4-2.png)
 
-### Change seelction density
+### Change selection density
 
 ```r
 template <- makeBinTemplate('btnw.wav', dens = 0.4, amp.cutoff = -35)
-```
-
-
-
-```r
 plot(template)
 ```
 
@@ -98,15 +73,19 @@ plot(template)
 
 ```r
 template <- makeBinTemplate('btnw.wav', wl = 1024, ovlp = 75, amp.cutoff = -35)
-```
-
-
-
-```r
 plot(template)
 ```
 
 ![plot of chunk example6](figure/example6-1.png)![plot of chunk example6](figure/example6-2.png)
+
+### Change template name
+
+```r
+template <- makeBinTemplate('btnw.wav', name='btnw_typeB_5kHz', amp.cutoff = -35)
+plot(template)
+```
+
+![plot of chunk example6_1](figure/example6_1-1.png)![plot of chunk example6_1](figure/example6_1-2.png)
 
 ### Intersection of two clips
 <a href="https://github.com/jonkatz2/monitoR/blob/gh-pages/assets/makingTemplates/btnw2.wav?raw=true">(download the second clip)</a>
@@ -149,3 +128,22 @@ plot(template)
 ```
 
 ![plot of chunk example8](figure/example8-1.png)
+
+### Combine templates
+
+```r
+template1 <- makeBinTemplate('btnw.wav', name='btnw_typeB_5kHz', amp.cutoff = -35)
+```
+
+```r
+template2 <- makeBinTemplate('btnw2.wav', name='btnw_typeB_5.8kHz', amp.cutoff = -35)
+```
+
+```r
+templates <- combineBinTemplates(template1, template2)
+plot(templates, ask=FALSE)
+```
+
+![plot of chunk example9_1](figure/example9_1-1.png)![plot of chunk example9_1](figure/example9_1-2.png)
+
+
