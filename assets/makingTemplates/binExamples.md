@@ -6,7 +6,7 @@ group: navigation
 
 
 ## Making Binary Point Template Examples
-These examples explore arguments beyond `select`. To see examples with `select` <a href="assets/makingBinTemplates/makingBinTemplates.html" target="_blank">read the longer article.</a>
+These examples explore arguments beyond `select`. To see examples with `select` <a href="makingBinTemplates.html" target="_blank">read the longer article.</a>
 
 ### Get clip, write to file
 
