@@ -6,7 +6,7 @@ group: navigation
 
 
 ## Making Binary Point Templates
-These examples explore arguments beyond `select`. To see examples with `select` <a href="makingBinTemplates.html" target="_blank">read the longer article.</a>
+These examples explore the function arguments. You can also <a href="makingBinTemplates.html" target="_blank">read the article.</a>
 
 
 
@@ -32,6 +32,34 @@ plot(template)
 ```
 
 ![plot of chunk example1_1](figure/example1_1-1.png)![plot of chunk example1_1](figure/example1_1-2.png)
+
+### Automatic point selection 
+Automatic is the default because it does not require interactivity and allows the package vignette and examples to build. In general use it is unlikely that users will build the most effective templates with the "auto" option.  
+
+
+
+```r
+template <- makeBinTemplate('btnw.wav', amp.cutoff=-35)
+plot(template)
+```
+
+![plot of chunk example1_2](figure/example1_2-1.png)![plot of chunk example1_2](figure/example1_2-2.png)
+
+### Change select to 'rectangle'
+
+```r
+template <- makeBinTemplate('btnw.wav', select='rectangle', amp.cutoff=-35)
+```
+![](img/t1_rect_off2.png)![](img/t1_rect_plot.png)
+
+
+### Change select to 'cell'
+
+```r
+template <- makeBinTemplate('btnw.wav', select='cell', amp.cutoff=-35)
+```
+![](img/t1_cell.png)![](img/t1_cell_plot.png)
+
 
 ### Change time limits
 

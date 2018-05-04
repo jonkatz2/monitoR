@@ -11,6 +11,30 @@ data(btnw)
 tuneR::writeWave(btnw, 'btnw.wav')
 ```
 
+### Automatic point selection 
+Automatic is the default because it does not require interactivity and allows the package vignette and examples to build. In general use it is unlikely that users will build the most effective templates with the "auto" option.  
+
+
+```{r example1_2}
+template <- makeCorTemplate('btnw.wav')
+plot(template)
+```
+
+### Change select to 'rectangle'
+```{r eval=FALSE}
+template <- makeCorTemplate('btnw.wav', select='rectangle')
+```
+![](img/cor_rect.png)![](img/cor_rect_plot.png)
+
+
+### Change select to 'cell'
+```{r eval=FALSE}
+template <- makeCorTemplate('btnw.wav', select='cell')
+```
+![](img/cor_cell.png)![](img/cor_cell_plot.png)
+
+
+
 ### Change time limits
 ```{r corExample2}
 template <- makeCorTemplate('btnw.wav', t.lim = c(0.75, 2.25))

@@ -4,7 +4,6 @@ title : corTemplate examples
 group: navigation
 ---  
 
-
 ## Making Spectrogram Cross-correlation Templates
 These examples explore arguments beyond `select`. To see examples with `select` <a href="makingCorTemplates.html" target="_blank">read the longer article.</a>
 
@@ -16,6 +15,35 @@ These examples explore arguments beyond `select`. To see examples with `select` 
 data(btnw)
 tuneR::writeWave(btnw, 'btnw.wav')
 ```
+
+### Automatic point selection 
+Automatic is the default because it does not require interactivity and allows the package vignette and examples to build. In general use it is unlikely that users will build the most effective templates with the "auto" option.  
+
+
+
+```r
+template <- makeCorTemplate('btnw.wav')
+plot(template)
+```
+
+![plot of chunk example1_2](figure/example1_2-1.png)![plot of chunk example1_2](figure/example1_2-2.png)
+
+### Change select to 'rectangle'
+
+```r
+template <- makeCorTemplate('btnw.wav', select='rectangle')
+```
+![](img/cor_rect.png)![](img/cor_rect_plot.png)
+
+
+### Change select to 'cell'
+
+```r
+template <- makeCorTemplate('btnw.wav', select='cell')
+```
+![](img/cor_cell.png)![](img/cor_cell_plot.png)
+
+
 
 ### Change time limits
 
@@ -34,22 +62,6 @@ plot(template)
 ```
 
 ![plot of chunk corExample3](figure/corExample3-1.png)![plot of chunk corExample3](figure/corExample3-2.png)
-
-### Change buffer
-
-```r
-template <- makeCorTemplate('btnw.wav', buffer = 4)
-```
-
-```
-## Error in spectro(wave = clip, wl = wl, ovlp = ovlp, wn = wn, ...): unused argument (buffer = 4)
-```
-
-```r
-plot(template)
-```
-
-![plot of chunk corExample4](figure/corExample4-1.png)
 
 ### Change selection density
 
