@@ -1,4 +1,8 @@
-
+---
+layout: default
+title : Making Cor Templates
+group: navigation
+--- 
 
 
 
@@ -41,7 +45,7 @@ data(btnw)
 viewSpec(btnw)
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
+![plot of chunk cor1](figure/cor1-1.png)
 
 ## Spectrogram cross correlation templates
 The three methods of selecting points in the template creation process are:  
@@ -60,7 +64,7 @@ Automatic is the default because it does not require interactivity and allows th
 t1_auto <- makeCorTemplate(btnw, frq.lim=c(2, 8.4), name='t1_auto', write.wav=TRUE)
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
+![plot of chunk cor2](figure/cor2-1.png)
 
 ```
 ## 
@@ -92,7 +96,7 @@ Plot the template to see how it fits on the original sound clip. To keep templat
 plot(t1_auto)
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
+![plot of chunk cor4](figure/cor4-1.png)
 
 ### Manual template creation 
 The only step in this process is point selection.  
@@ -147,7 +151,7 @@ t1_rect
 plot(t1_rect)
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png)
+![plot of chunk cor5](figure/cor5-1.png)
 
 After a template has been made, you may wish to:  
 

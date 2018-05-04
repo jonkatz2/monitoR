@@ -7,6 +7,7 @@ group: navigation
 
 
 
+
 # Making Templates
 Most of the template creation process is covered in the vignette (Quick Start Guide), but we can cover it once more here. Making templates is possibly the single most subjective aspect of automated detection, so users attempting to start a monitoring program will probably spend many hours making and testing templates.  
 

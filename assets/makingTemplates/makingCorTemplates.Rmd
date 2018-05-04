@@ -36,7 +36,7 @@ For this example we will use the recordings that come with the package. The pack
 </div>
 
 First load the black-throated green warbler song included with the package.  
-```{r}
+```{r cor1}
 library(monitoR)
 data(btnw)
 viewSpec(btnw)
@@ -56,18 +56,18 @@ Automatic is the default because it does not require interactivity and allows th
 if(file.exists('btnw.wav')) file.remove('btnw.wav')
 ```
 
-```{r}
+```{r cor2}
 t1_auto <- makeCorTemplate(btnw, frq.lim=c(2, 8.4), name='t1_auto', write.wav=TRUE)
 ```
 Printing the template yields a description of the contents of the template.  
 
-```{r}
+```{r cor3}
 t1_auto
 ```
 
 Plot the template to see how it fits on the original sound clip. To keep templates lightweight the original clip is not stored within the template but as a file path. When the clip is a wave object rather than a file path, the clip is saved to the working directory as long as the argument `write.wav=TRUE` (if `write.wav=FALSE`, the function will yield an error).  
 
-```{r}
+```{r cor4}
 plot(t1_auto)
 ```
 
@@ -97,7 +97,7 @@ The signal component of this clip is only about 1 second long, but I've artifici
 ```{r echo=FALSE}
 t1_rect <- readCorTemplates(files='t1_rect.ct')
 ```
-```{r}
+```{r cor5}
 t1_rect
 plot(t1_rect)
 ```
