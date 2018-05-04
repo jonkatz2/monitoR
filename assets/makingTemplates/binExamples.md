@@ -50,7 +50,7 @@ plot(template)
 ```r
 template <- makeBinTemplate('btnw.wav', select='rectangle', amp.cutoff=-35)
 ```
-![](img/t1_rect_off2.png)![](img/t1_rect_plot.png)
+![](img/t1_rect.png)![](img/t1_rect_plot.png)
 
 
 ### Change select to 'cell'

@@ -5,8 +5,7 @@ group: navigation
 ---  
 
 ## Making Spectrogram Cross-correlation Templates
-These examples explore arguments beyond `select`. To see examples with `select` <a href="makingCorTemplates.html" target="_blank">read the longer article.</a>
-
+These examples explore function arguments. You can also <a href="makingCorTemplates.html" target="_blank">read the article.</a>
 
 
 ### Get clip, write to file
