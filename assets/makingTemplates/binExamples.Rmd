@@ -1,0 +1,80 @@
+## Making Binary Point Templates
+### Get clip, write to file
+```{r}
+data(btnw)
+tuneR::writeWave(btnw, 'btnw.wav')
+```
+
+### Change amp.cutoff
+```{r}
+template <- makeBinTemplate('btnw.wav', amp.cutoff = -45)
+plot(template)
+
+template <- makeBinTemplate('btnw.wav', amp.cutoff = -25)
+plot(template)
+```
+
+### Change time limits
+```{r}
+template <- makeBinTemplate('btnw.wav', t.lim = c(0.75, 2.25), amp.cutoff = -35)
+plot(template)
+```
+
+### Change frq limits
+```{r}
+template <- makeBinTemplate('btnw.wav', frq.lim = c(3, 7), amp.cutoff = -35)
+plot(template)
+```
+
+### Change buffer
+```{r}
+template <- makeBinTemplate('btnw.wav', buffer=4, amp.cutoff = -35)
+plot(template)
+```
+
+### Change density
+```{r}
+template <- makeBinTemplate('btnw.wav', dens=0.4, amp.cutoff = -35)
+plot(template)
+```
+
+### Change FFT params
+```{r}
+template <- makeBinTemplate('btnw.wav', wl = 1024, ovlp = 75, amp.cutoff = -35)
+plot(template)
+```
+
+### Intersection of two clips
+```{r}
+btnw_2 <- c('btnw.wav', 'btnw2.wav')
+```
+```{r results='hold'}
+viewSpec(btnw_2[1])
+viewSpec(btnw_2[2])
+```
+```{r eval=FALSE}
+template <- makeBinTemplate(btnw_2, t.lim = list(c(0.75, 2.25),c(1.5, 3.5)), frq.lim = c(3, 8), amp.cutoff = -35)
+```
+```
+## Interactive clip alignment.
+## Enter l, ll, ll, etc. for left shift, 
+## r, rr, rrr, etc. for right shift, 
+## or Enter to continue.
+```
+![](img/intersectBTNW.png)
+```
+ll
+lll
+l
+```
+![](img/intersectBTNW2.png)
+
+
+![](img/intersectBTNW3.png)
+
+```{r results='hide'}
+template <- readBinTemplates('intersect.bt')
+```
+```{r}
+plot(template)
+```

@@ -1,3 +1,8 @@
+---
+layout: default
+title : Annotating Spectrograms
+group: navigation
+---  
 
 
 
@@ -16,7 +21,7 @@ For this example we will use the recordings that come with the package. The pack
 
 <div class="row">
 <div class="col-md-6">
-<h3>Binary point matching:</h3>
+<h3>Binary point matching (this page):</h3>
 <ol>  
   <li> Three methods of selecting points in a template </li>  
   <li> Template consists of "on" and "off" point locations </li>  
@@ -24,7 +29,7 @@ For this example we will use the recordings that come with the package. The pack
 </ol>
 </div>
 <div class="col-md-6">
-<h3>Spectrogram cross-correlation:</h3>
+<h3><a href="assets/makingTemplates/makingCorTemplates.html" target="_blank">Spectrogram cross-correlation:</a></h3>
 <ol>  
   <li> Three methods of selecting points in a template </li>  
   <li> Template consists of only "points" and their locations </li>  
@@ -246,6 +251,8 @@ After a template has been made, you may wish to:
   *  Add a comment (e.g. clip source, performance results, etc.): use the assignment function `templateComment()<-`  
   *  Move the clip location: use the assignment function `templatePath()<-`  
   *  Save the template to disk: use the function `writeBinTemplates()`  
+  *  Combine it with others for use at the same time: use `combineBinTemplates()`  
+
 
 
 
