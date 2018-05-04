@@ -15,7 +15,8 @@ tuneR::writeWave(btnw, 'btnw.wav')
 ```{r example1}
 template <- makeBinTemplate('btnw.wav', amp.cutoff = -45)
 plot(template)
-
+```
+```{r example1_1}
 template <- makeBinTemplate('btnw.wav', amp.cutoff = -25)
 plot(template)
 ```

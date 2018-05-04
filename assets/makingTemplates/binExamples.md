@@ -22,21 +22,21 @@ tuneR::writeWave(btnw, 'btnw.wav')
 template <- makeBinTemplate('btnw.wav', amp.cutoff = -45)
 ```
 
+```r
+plot(template)
+```
+![plot of chunk example1](figure/example1-1.png)![plot of chunk example1](figure/example1-2.png)
 
 
 ```r
-plot(template)
-
 template <- makeBinTemplate('btnw.wav', amp.cutoff = -25)
 ```
 
-
-
 ```r
 plot(template)
 ```
 
-![plot of chunk example1](figure/example1-1.png)![plot of chunk example1](figure/example1-2.png)![plot of chunk example1](figure/example1-3.png)![plot of chunk example1](figure/example1-4.png)
+![plot of chunk example1](figure/example1-3.png)![plot of chunk example1](figure/example1-4.png)
 
 ### Change time limits
 
