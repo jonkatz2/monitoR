@@ -1,9 +1,8 @@
 ---
 layout: default
-title : Annotating Spectrograms
+title : Making Bin Templates
 group: navigation
 ---  
-
 
 
 
@@ -112,7 +111,7 @@ The "binary" part of binary point matching refers to step one of template creati
 
 Use between 1 and 5 "h" characters (pressing enter between entries --- `h` is a little, `hhhhh` is a lot) to raise the threshold, and between 1 and 5 "l" characters (again pressing enter between entries) to lower the threshold. This process will loop continuously allowing you to raise and lower the threshold as much as necessary. When you are satisfied press enter again to end the loop.  
 
-The name that will be displayed in all detection output and some spectrogram parameters are specified in the function call as well.  
+The name that will be displayed in all detection output and some spectrogram parameters is specified in the function call as well.  
 
 
 ```r
@@ -253,7 +252,11 @@ After a template has been made, you may wish to:
   *  Save the template to disk: use the function `writeBinTemplates()`  
   *  Combine it with others for use at the same time: use `combineBinTemplates()`  
 
+#### Selecting with "cell"
 
+#### Reducing the number of "off" points with density < 1
+
+#### Using a buffer around "on" points
 
 
 
