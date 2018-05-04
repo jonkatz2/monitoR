@@ -2,7 +2,7 @@
 layout: default
 title : Making Cor Templates
 group: navigation
---- 
+---  
 
 
 
@@ -59,9 +59,8 @@ Automatic is the default because it does not require interactivity and allows th
 
 
 
-
 ```r
-t1_auto <- makeCorTemplate(btnw, frq.lim=c(2, 8.4), name='t1_auto', write.wav=TRUE)
+t1_auto <- makeCorTemplate('btnw.wav', frq.lim=c(2, 8.4), name='t1_auto')
 ```
 
 ![plot of chunk cor2](figure/cor2-1.png)
@@ -105,10 +104,10 @@ The name that will be displayed in all detection output and some spectrogram par
 
 
 ```r
-t1_rect <- makeCorTemplate(btnw, frq.lim=c(2, 8.4), select='rect', name='t1_rect', write.wav=TRUE)
+cor_rect <- makeCorTemplate('btnw.wav', frq.lim=c(2, 8.4), select='rect', name='cor_rect')
 ```
 
-![](img/t1_rect_setAmp.png)
+![](img/cor_rect.png)
 
 
 #### Point selection
@@ -123,14 +122,6 @@ Point selection operates as a continuous loop until broken by right clicking twi
 The signal component of this clip is only about 1 second long, but I've artificially extended the template duration to about 3 seconds by selecting some tiny points at the edges. I did this because the peak detecting algorithm (in `findPeaks()`) will yield a value for each template duration in the survey. If you are planning to sort through the peaks (e.g. to identify false negatives at a score threshold), this may yield more manageable results since a 1 second long template will yield roughly 600 peaks in a survey, while a 3 second long template will yield about 200 peaks. The scoring algorithm (in function `binMatch()`) returns only the center time of each score, so I've taken some care to maintain the center of the template in the center of the signal component.  
 
 
-```
-## Warning in file(con, "r"): cannot open file './t1_rect.ct': No such file or
-## directory
-```
-
-```
-## Error in file(con, "r"): cannot open the connection
-```
 
 ```r
 t1_rect
@@ -138,17 +129,16 @@ t1_rect
 
 ```
 ## 
-## Object of class "binTemplateList"
-## 
+## Object of class "corTemplateList"
 ## 	containing  1  templates
-##         original.recording sample.rate lower.frequency upper.frequency
-## t1_rect           btnw.wav       24000        2.296875        8.109375
-##         duration on.points off.points score.cutoff
-## t1_rect      2.9       708       1525           12
+##          original.recording sample.rate lower.frequency upper.frequency
+## cor_rect           btnw.wav       24000           3.094           7.641
+##          lower.amp upper.amp duration n.points score.cutoff
+## cor_rect    -81.86         0    2.965     2225          0.4
 ```
 
 ```r
-plot(t1_rect)
+plot(cor_rect)
 ```
 
 ![plot of chunk cor5](figure/cor5-1.png)
@@ -161,6 +151,39 @@ After a template has been made, you may wish to:
   *  Move the clip location: use the assignment function `templatePath()<-`  
   *  Save the template to disk: use the function `writeCorTemplates()`  
   *  Combine it with others for use at the same time: use `combineCorTemplates()`  
+
+#### Selecting with "cell"
+
+
+```r
+cor_cell <- makeCorTemplate('btnw.wav', frq.lim=c(2, 8.4), select='cell', name='cor_cell')
+```
+
+![](img/cor_cell.png)
+
+
+
+```r
+t1_rect
+```
+
+```
+## 
+## Object of class "corTemplateList"
+## 	containing  1  templates
+##          original.recording sample.rate lower.frequency upper.frequency
+## cor_rect           btnw.wav       24000           3.094           7.641
+##          lower.amp upper.amp duration n.points score.cutoff
+## cor_rect    -81.86         0    2.965     2225          0.4
+```
+
+```r
+plot(cor_cell)
+```
+
+![plot of chunk cor6](figure/cor6-1.png)
+
+
 
 
 

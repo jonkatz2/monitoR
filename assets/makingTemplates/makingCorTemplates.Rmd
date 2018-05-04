@@ -40,6 +40,7 @@ First load the black-throated green warbler song included with the package.
 library(monitoR)
 data(btnw)
 viewSpec(btnw)
+
 ```
 
 ## Spectrogram cross correlation templates
@@ -52,12 +53,9 @@ The three methods of selecting points in the template creation process are:
 ### Automatic template creation 
 Automatic is the default because it does not require interactivity and allows the package vignette and examples to build. In general use it is unlikely that users will build the most effective templates with the "auto" option.  
 
-```{r echo=FALSE, results='hide'}
-if(file.exists('btnw.wav')) file.remove('btnw.wav')
-```
 
 ```{r cor2}
-t1_auto <- makeCorTemplate(btnw, frq.lim=c(2, 8.4), name='t1_auto', write.wav=TRUE)
+t1_auto <- makeCorTemplate('btnw.wav', frq.lim=c(2, 8.4), name='t1_auto')
 ```
 Printing the template yields a description of the contents of the template.  
 
@@ -77,10 +75,10 @@ The only step in this process is point selection.
 The name that will be displayed in all detection output and some spectrogram parameters is specified in the function call as well.  
 
 ```{r eval=FALSE}
-t1_rect <- makeCorTemplate(btnw, frq.lim=c(2, 8.4), select='rect', name='t1_rect', write.wav=TRUE)
+cor_rect <- makeCorTemplate('btnw.wav', frq.lim=c(2, 8.4), select='rect', name='cor_rect')
 ```
 
-![](img/t1_rect_setAmp.png)
+![](img/cor_rect.png)
 
 
 #### Point selection
@@ -95,11 +93,11 @@ Point selection operates as a continuous loop until broken by right clicking twi
 The signal component of this clip is only about 1 second long, but I've artificially extended the template duration to about 3 seconds by selecting some tiny points at the edges. I did this because the peak detecting algorithm (in `findPeaks()`) will yield a value for each template duration in the survey. If you are planning to sort through the peaks (e.g. to identify false negatives at a score threshold), this may yield more manageable results since a 1 second long template will yield roughly `r 10*60` peaks in a survey, while a 3 second long template will yield about `r 10*60/3` peaks. The scoring algorithm (in function `binMatch()`) returns only the center time of each score, so I've taken some care to maintain the center of the template in the center of the signal component.  
 
 ```{r echo=FALSE}
-t1_rect <- readCorTemplates(files='t1_rect.ct')
+cor_rect <- readCorTemplates(files='cor_rect.ct')
 ```
 ```{r cor5}
 t1_rect
-plot(t1_rect)
+plot(cor_rect)
 ```
 
 After a template has been made, you may wish to:  
@@ -110,6 +108,24 @@ After a template has been made, you may wish to:
   *  Move the clip location: use the assignment function `templatePath()<-`  
   *  Save the template to disk: use the function `writeCorTemplates()`  
   *  Combine it with others for use at the same time: use `combineCorTemplates()`  
+
+#### Selecting with "cell"
+
+```{r eval=FALSE}
+cor_cell <- makeCorTemplate('btnw.wav', frq.lim=c(2, 8.4), select='cell', name='cor_cell')
+```
+
+![](img/cor_cell.png)
+
+```{r echo=FALSE}
+cor_cell <- readCorTemplates(files='cor_cell.ct')
+```
+```{r cor6}
+t1_rect
+plot(cor_cell)
+```
+
+
 
 
 

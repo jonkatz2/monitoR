@@ -23,12 +23,6 @@ template <- makeCorTemplate('btnw.wav', frq.lim = c(3, 7))
 plot(template)
 ```
 
-### Change buffer
-```{r corExample4}
-template <- makeCorTemplate('btnw.wav', buffer = 4)
-plot(template)
-```
-
 ### Change selection density
 ```{r corExample5}
 template <- makeCorTemplate('btnw.wav', dens = 0.4)
