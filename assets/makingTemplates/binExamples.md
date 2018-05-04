@@ -159,7 +159,7 @@ plot(template)
 ![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png)
 
 ### Intersection of two clips
-<a href="assets/makingBinTemplates/btnw2.wav">(download the second clip)</a>
+<a href="https://github.com/jonkatz2/monitoR/blob/gh-pages/assets/makingTemplates/btnw2.wav?raw=true">(download the second clip)</a>
 
 ```r
 btnw_2 <- c('btnw.wav', 'btnw2.wav')
