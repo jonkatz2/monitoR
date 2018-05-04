@@ -14,8 +14,9 @@ layout: default
         <li>Functions to create, modify, save, and use templates for automated detection
             <ul>
                 <li><a href="assets/makingTemplates/makingBinTemplates.html">Methods for selecting points (binary point matching)</a></li>
-                <li><a href="assets/makingTemplates/binExamples.html">Examples</a></li>
-<!--                <li><a href="assets/makingTemplates/makingCorTemplates.html">Methods for selecting points (spectrogram cross correlation)</a></li>-->
+                <li><a href="assets/makingTemplates/binExamples.html">Binary Template Examples</a></li>
+                <li><a href="assets/makingTemplates/makingCorTemplates.html">Methods for selecting points (spectrogram cross correlation)</a></li>
+                <li><a href="assets/makingTemplates/corExamples.html">Spectrogram Cross-correlation Examples</a></li>
                 <li>Plotting templates</li>
                 <li>Writing/reading templates</li>
                 <li>Comparing template performance</li>
