@@ -45,6 +45,8 @@ plot(template)
 ```
 
 ### Intersection of two clips
+<a href="https://github.com/jonkatz2/monitoR/blob/gh-pages/assets/makingTemplates/btnw2.wav?raw=true">(download the second clip)</a>
+
 ```{r}
 btnw_2 <- c('btnw.wav', 'btnw2.wav')
 ```
@@ -72,7 +74,7 @@ l
 
 ![](img/intersectBTNW3.png)
 
-```{r results='hide'}
+```{r echo=FALSE, results='hide'}
 template <- readBinTemplates('intersect.bt')
 ```
 ```{r}

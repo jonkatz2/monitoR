@@ -5,7 +5,7 @@ group: navigation
 ---  
 
 
-## Making Binary Point Templates
+## Making Binary Point Template Examples
 ### Get clip, write to file
 
 ```r
@@ -21,12 +21,7 @@ template <- makeBinTemplate('btnw.wav', amp.cutoff = -45)
 
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
 
-```
-## 
-## Automatic point selection.
-## 
-## Done.
-```
+
 
 ```r
 plot(template)
@@ -40,12 +35,7 @@ template <- makeBinTemplate('btnw.wav', amp.cutoff = -25)
 
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-3.png)
 
-```
-## 
-## Automatic point selection.
-## 
-## Done.
-```
+
 
 ```r
 plot(template)
@@ -61,12 +51,7 @@ template <- makeBinTemplate('btnw.wav', t.lim = c(0.75, 2.25), amp.cutoff = -35)
 
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
 
-```
-## 
-## Automatic point selection.
-## 
-## Done.
-```
+
 
 ```r
 plot(template)
@@ -82,12 +67,7 @@ template <- makeBinTemplate('btnw.wav', frq.lim = c(3, 7), amp.cutoff = -35)
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
 
-```
-## 
-## Automatic point selection.
-## 
-## Done.
-```
+
 
 ```r
 plot(template)
@@ -103,12 +83,7 @@ template <- makeBinTemplate('btnw.wav', buffer=4, amp.cutoff = -35)
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
 
-```
-## 
-## Automatic point selection.
-## 
-## Done.
-```
+
 
 ```r
 plot(template)
@@ -124,12 +99,7 @@ template <- makeBinTemplate('btnw.wav', dens=0.4, amp.cutoff = -35)
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
 
-```
-## 
-## Automatic point selection.
-## 
-## Done.
-```
+
 
 ```r
 plot(template)
@@ -145,12 +115,7 @@ template <- makeBinTemplate('btnw.wav', wl = 1024, ovlp = 75, amp.cutoff = -35)
 
 ![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
 
-```
-## 
-## Automatic point selection.
-## 
-## Done.
-```
+
 
 ```r
 plot(template)
@@ -198,9 +163,6 @@ l
 ![](img/intersectBTNW3.png)
 
 
-```r
-template <- readBinTemplates('intersect.bt')
-```
 
 ```r
 plot(template)
