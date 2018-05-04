@@ -1,6 +1,10 @@
 ## Making Binary Point Templates
 These examples explore arguments beyond `select`. To see examples with `select` <a href="makingBinTemplates.html" target="_blank">read the longer article.</a>
 
+```{r include=FALSE}
+opts_chunk$set(fig.show='hold', warning=FALSE)
+```
+
 ### Get clip, write to file
 ```{r}
 data(btnw)
@@ -52,7 +56,7 @@ plot(template)
 ```{r}
 btnw_2 <- c('btnw.wav', 'btnw2.wav')
 ```
-```{r example7, fig.show='hold'}
+```{r example7}
 viewSpec(btnw_2[1]) # The clip that comes with the package
 viewSpec(btnw_2[2]) # Another song, ~800Hz higher frequency
 ```
