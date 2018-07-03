@@ -2,8 +2,8 @@
 # Modified 2018 JULY 03 JEK
 
 combineCorTemplates <- function(...) {
-   if(is.list(temps[[1]])) temps <- temps[[1]] 
    temps <- list(...)
+   if(is.list(temps[[1]])) temps <- temps[[1]] 
    x <- NULL
 
    for(i in 1:length(temps)) {
