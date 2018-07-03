@@ -1,9 +1,8 @@
 # For combining correlation template lists together
-# Modified: 2013 JUNE 13
+# Modified 2018 JULY 03 JEK
 
-combineCorTemplates <-
-function(...) {
-
+combineCorTemplates <- function(...) {
+   if(is.list(temps[[1]])) temps <- temps[[1]] 
    temps <- list(...)
    x <- NULL
 

@@ -18,7 +18,7 @@ combineBinTemplates(...)
 }
 
 \arguments{
-  \item{\dots}{Correlation \emph{or} binary template lists (class \code{\linkS4class{corTemplateList}} or \code{\linkS4class{binTemplateList}}).}
+  \item{\dots}{Correlation \emph{or} binary template lists (class \code{\linkS4class{corTemplateList}} or \code{\linkS4class{binTemplateList}}), or a single list of such.}
 }
 
 \details{
