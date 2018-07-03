@@ -1,6 +1,10 @@
 monitoR
 
 Version 1.0.7
+2018 Jul 03 Jon Katz
+combine__Templates() now also accept a single list of templateList objects as well as a series of templateList objects. 
+
+Version 1.0.7
 2018 Feb 13 Sasha D. Hafner
 
 monitoR_QuickStart.Rnw
