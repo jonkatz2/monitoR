@@ -1,5 +1,12 @@
 monitoR
 
+Version 1.0.8
+2018 April 28 Sasha D. Hafner
+
+cutWave.R
+Error now thrown if `from` or `to` arguments are greater than duration of wave
+object.
+
 Version 1.0.7
 2018 Jul 03 Jon Katz
 combine__Templates() now also accept a single list of templateList objects as well as a series of templateList objects. 
