@@ -1,5 +1,4 @@
 # For calculating scores in spectrogram cross correlation
-# Modified: 2018 Feb 13
 
 corMatch <-
 function(
@@ -90,13 +89,13 @@ function(
     pts <- template@pts[, c(2:1, 3)]
 
     # Throws error if step sizes do not match
-    if(!all.equal(template@t.step, t.step, tolerance=t.step/1E4)) {
-      stop('For ', i,' time step doesn\'t match survey time step: ', t.step, ' != ', template@t.step, '. Adjust one or the other and try again.')
-      ##pts[, 't'] <- round(pts[, 't']*template@t.step/t.step)
-      ##if(warn) warning('For ', i,' time step doesn\'t match survey time step: ', t.step, ' != ', template@t.step)
+    if(!isTRUE(all.equal(template@t.step, t.step, tolerance=t.step/1E4))) {
+      stop('For ', i,' template time step doesn\'t match survey time step (', signif(t.step, 5), ' != ', signif(template@t.step, 5), ') but they must to use this function. See help file and also changeSampRate().')
+      #pts[, 't'] <- round(pts[, 't']*template@t.step/t.step)
+      #if(warn) warning('For ', i,' time step doesn\'t match survey time step: ', t.step, ' != ', template@t.step)
     }
-    if(!all.equal(template@frq.step, frq.step, tolerance=frq.step/1E6)) {
-      stop(i, ' frequency step does\'t match survey frequency step, ', frq.step, ' != ', template@frq.step, '. Adjust one or the other and try again.')
+    if(!isTRUE(all.equal(template@frq.step, frq.step, tolerance=frq.step/1E6))) {
+      stop('For ', i,' template frequency step doesn\'t match survey frequency step (', signif(frq.step, 5), ' != ', signif(template@frq.step, 5), ') but they must to use this function. See help file.')
       #pts[, 'frq'] <- round(pts[, 'frq']*template@frq.step/frq.step)
       #if(warn) warning(i, ' frequency step does\'t match survey frequency step, ', frq.step, ' != ', template@frq.step)
     }

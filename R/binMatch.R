@@ -1,5 +1,4 @@
 # For calculating scores for binary template matching 
-# Modified: 2018 Feb 13
 
 binMatch <-
 function(
@@ -97,14 +96,14 @@ function(
     if(nrow(pt.off) == 0) stop('You are missing "off" points in template ', i,'. This template cannot be used.')
 
     # Throw error if step sizes don't match
-    if(!isTRUE(all.equal(template@t.step, t.step, tolerance = t.step/1E4))) {
-      stop('For ', i,' time step doesn\'t match survey time step: ', t.step, ' != ', template@t.step, '. Adjust one or the other and try again.')
+    if(!isTRUE(all.equal(template@t.step, t.step, tolerance=t.step/1E4))) {
+      stop('For ', i,' template time step doesn\'t match survey time step (', signif(t.step, 5), ' != ', signif(template@t.step, 5), ') but they must to use this function. See help file and also changeSampRate().')
       ##pt.on[, 't'] <- round(pt.on[, 't']*template@t.step/t.step)
       ##pt.off[, 't'] <- round(pt.off[, 't']*template@t.step/t.step)
       ##if(warn) warning('For ', i,', time step doesn\'t match survey time step: ', t.step, ' != ', template@t.step)
     }
-    if(!isTRUE(all.equal(template@frq.step, frq.step, tolerance = frq.step/1E4))) {
-      stop(i, ' frequency step does\'t match survey frequency step, ', frq.step, ' != ', template@frq.step, '. Adjust one or the other and try again.')
+    if(!isTRUE(all.equal(template@frq.step, frq.step, tolerance=frq.step/1E6))) {
+      stop('For ', i,' template frequency step doesn\'t match survey frequency step (', signif(frq.step, 5), ' != ', signif(template@frq.step, 5), ') but they must to use this function. See help file.')
       ##pt.on[, 'frq'] <- round(pt.on[, 'frq']*template@frq.step/frq.step)
       ##pt.off[, 'frq'] <- round(pt.off[, 'frq']*template@frq.step/frq.step)
       ##if(warn) warning('For ', i,', frequency step does\'t match survey frequency step, ', frq.step, ' != ', template@frq.step)
