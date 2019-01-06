@@ -4,16 +4,16 @@
 findPeaks <- 
 function(
   score.obj,       # A scoreList object, complete output from corMatch or binMatch
-  fd.rat=1,        # Factor to multiply template duration by for determining frame width
+  fd.rat = 1,        # Factor to multiply template duration by for determining frame width
   frame,           # Or directly specify the frame width
-  parallel=FALSE
+  parallel = FALSE
 ) {
 
   if(missing(score.obj)) stop('Required argument score.obj is missing')
 
   # Required packages
   if(parallel) {
-    lapplyfun <- function(X, FUN, mc.cores) parallel::mclapply(X, FUN, mc.cores=parallel::detectCores())
+    lapplyfun <- function(X, FUN, mc.cores) parallel::mclapply(X, FUN, mc.cores = parallel::detectCores())
   } else lapplyfun <- lapply
 
   # Finally start working on peaks. 
@@ -25,8 +25,8 @@ function(
   # Work through all templates
   if(missing(frame)) frame <- NA
   results <- lapplyfun(
-    X=score.names, 
-    FUN=function(i) {
+    X = score.names, 
+    FUN = function(i) {
       dat <- score.obj@scores[[i]]
       time <- dat$time
       score <- dat$score
@@ -48,16 +48,16 @@ function(
       pks <- dat[result, ] 
       rownames(pks) <- 1:nrow(pks)
 
-      pks$detection <- pks$score>=score.cutoff
-      hits <- pks[pks$score>=score.cutoff, ]
+      pks$detection <- pks$score>= score.cutoff
+      hits <- pks[pks$score>= score.cutoff, ]
       hits$detection <- NULL
       if(nrow(hits)>0) rownames(hits) <- 1:nrow(hits)
 
       # Summarize peak results
-      summary <- c(n.peaks=round(nrow(pks)), n.hits=round(nrow(hits)), max.score=signif(max(score), 3), min.score=signif(min(score), 3))
+      summary <- c(n.peaks = round(nrow(pks)), n.hits = round(nrow(hits)), max.score = signif(max(score), 3), min.score = signif(min(score), 3))
 
       cat('\nDone with ', i)
-      return(list(peaks=pks, detections=hits))
+      return(list(peaks = pks, detections = hits))
     }
   )
 
@@ -65,7 +65,7 @@ function(
   peaks <- lapply(results, `[[`, 'peaks')
   detections <- lapply(results, `[[`, 'detections')
 
-  object <- new('detectionList', survey.name=score.obj@survey.name, survey=score.obj@survey, survey.data=score.obj@survey.data, templates=score.obj@templates, scores=score.obj@scores, peaks=peaks, detections=detections)
+  object <- new('detectionList', survey.name = score.obj@survey.name, survey = score.obj@survey, survey.data = score.obj@survey.data, templates = score.obj@templates, scores = score.obj@scores, peaks = peaks, detections = detections)
   cat('\nDone\n')
   return(object)
 }

@@ -4,9 +4,9 @@
 
 getClip <- function(
   clip, 
-  name="clip", 
-  output="file", 
-  write.wav=FALSE
+  name = "clip", 
+  output = "file", 
+  write.wav = FALSE
 ) {
 
   if(class(clip) == "list" | (class(clip) == "character" && length(clip)>1)) {
@@ -37,7 +37,7 @@ getOneClip <- function(
     if(class(clip) == "Wave") {
       fname <- paste0(name, ".wav")
       if(!write.wav) {
-	stop("output argument is \"file\" but write.wav argument is FALSE so this function will not create a file. Set write.wav=TRUE to create a file, or else specify a wav file instead of a Wave object.")
+	stop("output argument is \"file\" but write.wav argument is FALSE so this function will not create a file. Set write.wav = TRUE to create a file, or else specify a wav file instead of a Wave object.")
       }
       if(file.exists(fname)) stop("Will not create a wav file from this clip because a file with name ", fname, " already exists.")
       else tuneR::writeWave(clip, fname) 
@@ -75,8 +75,8 @@ readClip <- function(clip) {
   if(!file.exists(clip)) stop("clip argument seems to be a file name but no file with the name ", clip, " exists!")
  
   file.ext <- tolower(gsub(".*\\.", "", clip))
-  if(file.ext == "wav") return(tuneR::readWave(filename=clip))
-  if(file.ext == "mp3") return(readMP3(filename=clip)) 
+  if(file.ext == "wav") return(tuneR::readWave(filename = clip))
+  if(file.ext == "mp3") return(readMP3(filename = clip)) 
   stop("File extension must be wav or mp3, but got ", file.ext)
 
 }

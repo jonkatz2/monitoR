@@ -30,6 +30,6 @@ function(file) {
    score.cutoff <- as.numeric(lns[n.pt + 28])
    comment <- as.character(lns[n.pt + 30])
 
-   template <- new('corTemplate', clip.path=clip, samp.rate=as.integer(samp.rate), pts=pts, t.step=t.step, frq.step=frq.step, n.t.bins=as.integer(n.t.bins), first.t.bin=first.t.bin, n.frq.bins=as.integer(n.frq.bins), duration=duration, frq.lim=frq.lim, wl=as.integer(wl), ovlp=as.integer(ovlp), wn=wn, score.cutoff=score.cutoff, comment=comment)
+   template <- new('corTemplate', clip.path = clip, samp.rate = as.integer(samp.rate), pts = pts, t.step = t.step, frq.step = frq.step, n.t.bins = as.integer(n.t.bins), first.t.bin = first.t.bin, n.frq.bins = as.integer(n.frq.bins), duration = duration, frq.lim = frq.lim, wl = as.integer(wl), ovlp = as.integer(ovlp), wn = wn, score.cutoff = score.cutoff, comment = comment)
    return(template)
 }

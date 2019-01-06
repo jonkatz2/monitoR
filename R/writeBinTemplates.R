@@ -4,9 +4,9 @@
 writeBinTemplates <-
 function(
    ..., 
-   dir='.', 
-   ext='bt', 
-   parallel=FALSE
+   dir = '.', 
+   ext = 'bt', 
+   parallel = FALSE
 ) {
 
    if(length(list(...))>1) templates <- combineBinTemplates(...) else templates <- list(...)[[1]]
@@ -15,10 +15,10 @@ function(
    if(!file.exists(dir)) dir.create(dir)
 
    if(parallel) {
-      lapplyfun <- function(X, FUN) parallel::mclapply(X, FUN, mc.cores=parallel::detectCores())
+      lapplyfun <- function(X, FUN) parallel::mclapply(X, FUN, mc.cores = parallel::detectCores())
    } else lapplyfun <- lapply
 
    names.templates <- names(templates@templates)
-   y <- lapplyfun(names.templates, function(x) writeOneBinTemplate(template=templates@templates[[x]], file=paste(dir, '/', x,'.', ext, sep='')))
+   y <- lapplyfun(names.templates, function(x) writeOneBinTemplate(template = templates@templates[[x]], file = paste(dir, '/', x,'.', ext, sep = '')))
    invisible(NULL)
 }

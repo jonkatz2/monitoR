@@ -4,9 +4,9 @@
 writeCorTemplates <-
 function(
    ..., 
-   dir='.', 
-   ext='ct', 
-   parallel=FALSE
+   dir = '.', 
+   ext = 'ct', 
+   parallel = FALSE
 ) {
 
    if(length(list(...))>1) templates <- combineCorTemplates(...) else templates <- list(...)[[1]]
@@ -15,10 +15,10 @@ function(
    if(!file.exists(dir)) dir.create(dir)
 
    if(parallel) {
-      lapplyfun <- function(X, FUN) parallel::mclapply(X, FUN, mc.cores=parallel::detectCores())
+      lapplyfun <- function(X, FUN) parallel::mclapply(X, FUN, mc.cores = parallel::detectCores())
    } else lapplyfun <- lapply
 
    names.templates <- names(templates@templates)
-   y <- lapplyfun(names.templates, function(x) writeOneCorTemplate(template=templates@templates[[x]], file=paste(dir, '/', x,'.', ext, sep='')))
+   y <- lapplyfun(names.templates, function(x) writeOneCorTemplate(template = templates@templates[[x]], file = paste(dir, '/', x,'.', ext, sep = '')))
    invisible()
 }

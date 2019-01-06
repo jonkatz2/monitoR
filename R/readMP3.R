@@ -19,17 +19,17 @@ readMP3 <- function (
          stop("No read permission for file ", filename)
       if (!missing(from) && !missing(to)) { # Begin 'cut' option
           # Use a terminal/cmd to see if mp3splt is installed
-         if (length(system("mp3splt -h", intern=TRUE))<10) {
+         if (length(system("mp3splt -h", intern = TRUE))<10) {
             cat("'mp3splt' not found; use tuneR::readMP3 equivalent? (Y/n)\n")
-			x <- tolower(readLines(n=1))
+			x <- tolower(readLines(n = 1))
 			if(x == 'y' || x == ""){
                wave <- tuneR::readMP3(filename)
                return(wave)
             } else stop('Download mp3splt at\nhttp://mp3splt.sourceforge.net/mp3splt_page/home.php')
          }
-         if(from>=to) # Make sure cut points are logical
-            stop("Invalid cut points: from>=to.")
-         if(from>=60) { # Format seconds to mm.ss.xx, where xx are hundredths 
+         if(from>= to) # Make sure cut points are logical
+            stop("Invalid cut points: from>= to.")
+         if(from>= 60) { # Format seconds to mm.ss.xx, where xx are hundredths 
             min <- from%/%60
             sec <- floor(from%%60)+round(from%%floor(from), 2)            
             if(nchar(sec)<5 && round(from%%floor(from), 2)>0) sec <- paste0('0', sec)
@@ -37,7 +37,7 @@ readMP3 <- function (
          } else if(from<10) {
             from <- paste0('00.0', round(from, 2))
          } else from <- paste0('00.', round(from, 2))
-         if (to>=60) {
+         if (to>= 60) {
             min <- to%/%60
             sec <- floor(to%%60)+round(to%%floor(to), 2)
             if(nchar(sec)<5 && round(to%%floor(to), 2)>0) sec <- paste0('0', sec)
@@ -54,7 +54,7 @@ readMP3 <- function (
          stop('Single cut point provided, must provide both from and to.')
       } else {
          # Continue standard tuneR::readMP3 process w/out 'cut' option
-         return(tuneR::readMP3(filename=filename))
+         return(tuneR::readMP3(filename = filename))
       }
    }
    

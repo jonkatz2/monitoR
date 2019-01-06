@@ -31,13 +31,13 @@ function(
       }
       if(is.null(names(value))) names(value) <- names(object@templates)[1:length(value)] else 
          if (!all(names(value) %in% names(object@templates))) 
-            stop('Name or names given for new cutoffs (', paste(names(value), collapse=', '), ') are not present in the templates (', paste(names(object@templates), collapse=', '), ').')
+            stop('Name or names given for new cutoffs (', paste(names(value), collapse = ', '), ') are not present in the templates (', paste(names(object@templates), collapse = ', '), ').')
       for(i in names(value)) {
          object@templates[[i]]@score.cutoff <- as.vector(value[i]) 
       }
    }
 
-   if(class(object) == "detectionList") object <- findDetections(object, keep.verify=TRUE)
+   if(class(object) == "detectionList") object <- findDetections(object, keep.verify = TRUE)
    return(object)
 
 }

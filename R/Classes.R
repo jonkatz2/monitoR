@@ -4,22 +4,22 @@
 # representation() is used for compatability with old version of R
 
 setClass('binTemplate', 
-#   slots=c(clip.path='character', samp.rate='integer', pt.on='matrix', pt.off='matrix', t.step='numeric', 
-#                  frq.step='numeric', n.t.bins='integer', first.t.bin='numeric', n.frq.bins='integer', 
-#                  duration='numeric', frq.lim='numeric', wl='integer', ovlp='integer', wn='character', 
-#                  score.cutoff='numeric', comment="character"
+#   slots = c(clip.path = 'character', samp.rate = 'integer', pt.on = 'matrix', pt.off = 'matrix', t.step = 'numeric', 
+#                  frq.step = 'numeric', n.t.bins = 'integer', first.t.bin = 'numeric', n.frq.bins = 'integer', 
+#                  duration = 'numeric', frq.lim = 'numeric', wl = 'integer', ovlp = 'integer', wn = 'character', 
+#                  score.cutoff = 'numeric', comment = "character"
 #   )
-   representation=representation(clip.path='character', samp.rate='integer', pt.on='matrix', pt.off='matrix', t.step='numeric', 
-                  frq.step='numeric', n.t.bins='integer', first.t.bin='numeric', n.frq.bins='integer', 
-                  duration='numeric', frq.lim='numeric', wl='integer', ovlp='integer', wn='character', 
-                  score.cutoff='numeric', comment="character"
+   representation = representation(clip.path = 'character', samp.rate = 'integer', pt.on = 'matrix', pt.off = 'matrix', t.step = 'numeric', 
+                  frq.step = 'numeric', n.t.bins = 'integer', first.t.bin = 'numeric', n.frq.bins = 'integer', 
+                  duration = 'numeric', frq.lim = 'numeric', wl = 'integer', ovlp = 'integer', wn = 'character', 
+                  score.cutoff = 'numeric', comment = "character"
    )
 )
 
 setClass('binTemplateList', 
-#   slots=c(templates='list'), 
-   representation=representation(templates='list'), 
-   validity=function(object) {
+#   slots = c(templates = 'list'), 
+   representation = representation(templates = 'list'), 
+   validity = function(object) {
       if (any(sapply(object@templates, function(x) !is(x, 'binTemplate'))))
          return('templates slot is not a list of binTemplate objects')
       if (is.null(names(object@templates)))
@@ -29,23 +29,23 @@ setClass('binTemplateList',
 )
 
 setClass('corTemplate', 
-#   slots=c(clip.path='character', samp.rate='integer', pts='matrix', t.step='numeric', 
-#                  frq.step='numeric', n.t.bins='integer', first.t.bin='numeric', n.frq.bins='integer', 
-#                  duration='numeric', frq.lim='numeric', wl='integer', ovlp='integer', wn='character', 
-#                  score.cutoff='numeric', comment="character"
+#   slots = c(clip.path = 'character', samp.rate = 'integer', pts = 'matrix', t.step = 'numeric', 
+#                  frq.step = 'numeric', n.t.bins = 'integer', first.t.bin = 'numeric', n.frq.bins = 'integer', 
+#                  duration = 'numeric', frq.lim = 'numeric', wl = 'integer', ovlp = 'integer', wn = 'character', 
+#                  score.cutoff = 'numeric', comment = "character"
 #   )
-   representation=representation(clip.path='character', samp.rate='integer', pts='matrix', t.step='numeric', 
-                  frq.step='numeric', n.t.bins='integer', first.t.bin='numeric', n.frq.bins='integer', 
-                  duration='numeric', frq.lim='numeric', wl='integer', ovlp='integer', wn='character', 
-                  score.cutoff='numeric', comment="character"
+   representation = representation(clip.path = 'character', samp.rate = 'integer', pts = 'matrix', t.step = 'numeric', 
+                  frq.step = 'numeric', n.t.bins = 'integer', first.t.bin = 'numeric', n.frq.bins = 'integer', 
+                  duration = 'numeric', frq.lim = 'numeric', wl = 'integer', ovlp = 'integer', wn = 'character', 
+                  score.cutoff = 'numeric', comment = "character"
    )
 
 )
 
 setClass('corTemplateList', 
-#   slots=c(templates='list'), 
-   representation=representation(templates='list'), 
-   validity=function(object) {
+#   slots = c(templates = 'list'), 
+   representation = representation(templates = 'list'), 
+   validity = function(object) {
       if (any(sapply(object@templates, function(x) !is(x, 'corTemplate'))))
          return('templates slot is not a list of corTemplate objects')
       if (is.null(names(object@templates)))
@@ -63,9 +63,9 @@ setClassUnion('Template',
 )
 
 setClass('templateScores', 
-#   slots=c(survey.name='character', survey='Wave', survey.data='list', templates='list', scores='list', time='character'), 
-   representation=representation(survey.name='character', survey='Wave', survey.data='list', templates='list', scores='list', time='character'), 
-   validity=function(object) {
+#   slots = c(survey.name = 'character', survey = 'Wave', survey.data = 'list', templates = 'list', scores = 'list', time = 'character'), 
+   representation = representation(survey.name = 'character', survey = 'Wave', survey.data = 'list', templates = 'list', scores = 'list', time = 'character'), 
+   validity = function(object) {
       if (any(sapply(object@templates, function(x) !is(x, 'Template'))))
          return('templates slot is not a list of Template objects')
       if (is.null(names(object@templates)))
@@ -76,9 +76,9 @@ setClass('templateScores',
 
 # MAY WANT TO ADD A validity CHECK FOR scores HERE
 setClass('detectionList', 
-#   slots=c(survey.name='character', survey='Wave', survey.data='list', templates='list', scores='list', peaks='list', detections='list'), 
-   representation=representation(survey.name='character', survey='Wave', survey.data='list', templates='list', scores='list', peaks='list', detections='list'), 
-   validity=function(object) {
+#   slots = c(survey.name = 'character', survey = 'Wave', survey.data = 'list', templates = 'list', scores = 'list', peaks = 'list', detections = 'list'), 
+   representation = representation(survey.name = 'character', survey = 'Wave', survey.data = 'list', templates = 'list', scores = 'list', peaks = 'list', detections = 'list'), 
+   validity = function(object) {
       if (any(sapply(object@templates, function(x) !is(x, 'Template'))))
          return('templates slot is not a list of Template objects')
       if (is.null(names(object@templates)))

@@ -3,10 +3,10 @@
 # Modified 2015 Sept 6
 
 dbDownloadTemplate <- function(
-    db.name='acoustics',                # Connection name in ODBC _and_ on host
+    db.name = 'acoustics',                # Connection name in ODBC _and_ on host
     uid,                                # Database User ID, if not in ODBC
     pwd,                                # Database Password, if not in ODBC
-    type="BIN",                         # 'BIN', 'binary', or 'bt', also 'COR', 'correlation' or 'ct'
+    type = "BIN",                         # 'BIN', 'binary', or 'bt', also 'COR', 'correlation' or 'ct'
     names,                              # Template names
     species,                            # Template species
     FFTwl,                              # FFT window length for templates
@@ -31,19 +31,19 @@ dbDownloadTemplate <- function(
     op[params] <- " AND "
     op[!params] <- ""
     
-    if(!missing(names)) names <- paste0("(", paste0("`tblTemplate`.`fldTemplateName` = '", paste0(names, collapse="' OR `tblTemplate`.`fldTemplateName` = '")), "')")
+    if(!missing(names)) names <- paste0("(", paste0("`tblTemplate`.`fldTemplateName` = '", paste0(names, collapse = "' OR `tblTemplate`.`fldTemplateName` = '")), "')")
     else names <- ""
 
-    if(!missing(species)) species <- paste0("(", paste0("`tblSpecies`.`fldSpeciesCode` = '", paste0(species, collapse="' OR `tblSpecies`.`fldSpeciesCode` = '")), "')")
+    if(!missing(species)) species <- paste0("(", paste0("`tblSpecies`.`fldSpeciesCode` = '", paste0(species, collapse = "' OR `tblSpecies`.`fldSpeciesCode` = '")), "')")
     else species <- ""
     
-    if(!missing(FFTwl)) FFTwl <- paste0("(", paste0("`tblTemplate`.`fldFFTwl` = '", paste0(FFTwl, collapse="' OR `tblTemplate`.`fldFFTwl` = '")), "')")
+    if(!missing(FFTwl)) FFTwl <- paste0("(", paste0("`tblTemplate`.`fldFFTwl` = '", paste0(FFTwl, collapse = "' OR `tblTemplate`.`fldFFTwl` = '")), "')")
     else FFTwl <- ""
     
-    if(!missing(FFTovlp)) FFTovlp <- paste0("(", paste0("`tblTemplate`.`fldFFTovlp` = '", paste0(names, collapse="' OR `tblTemplate`.`fldFFTovlp` = '")), "')")
+    if(!missing(FFTovlp)) FFTovlp <- paste0("(", paste0("`tblTemplate`.`fldFFTovlp` = '", paste0(names, collapse = "' OR `tblTemplate`.`fldFFTovlp` = '")), "')")
     else FFTovlp <- ""
     
-    if(!missing(FFTwn)) FFTwn <- paste0("(", paste0("`tblTemplate`.`fldFFTwn` = '", paste0(FFTwn, collapse="' OR `tblTemplate`.`fldFFTwn` = '")), "')")
+    if(!missing(FFTwn)) FFTwn <- paste0("(", paste0("`tblTemplate`.`fldFFTwn` = '", paste0(FFTwn, collapse = "' OR `tblTemplate`.`fldFFTwn` = '")), "')")
     else FFTwn <- ""
     
     
@@ -61,29 +61,29 @@ dbDownloadTemplate <- function(
     tblTemplate <- RODBC::sqlQuery(dbCon, query)
     # Assemble pt matrices
     if(std.type == "'BIN'") {
-        pt.on <- lapply(1:length(tblTemplate$fldTemplateName), function(x) cbind(t=eval(parse(text=as.character(tblTemplate$fldPtOnT[x]))), frq=eval(parse(text=as.character(tblTemplate$fldPtOnFrq[x])))))
-        pt.off=lapply(1:length(tblTemplate$fldTemplateName), function(x) cbind(t=eval(parse(text=as.character(tblTemplate$fldPtOffT[x]))), frq=eval(parse(text=as.character(tblTemplate$fldPtOffFrq[x])))))
+        pt.on <- lapply(1:length(tblTemplate$fldTemplateName), function(x) cbind(t = eval(parse(text = as.character(tblTemplate$fldPtOnT[x]))), frq = eval(parse(text = as.character(tblTemplate$fldPtOnFrq[x])))))
+        pt.off = lapply(1:length(tblTemplate$fldTemplateName), function(x) cbind(t = eval(parse(text = as.character(tblTemplate$fldPtOffT[x]))), frq = eval(parse(text = as.character(tblTemplate$fldPtOffFrq[x])))))
     } else if(std.type == "'COR'") {
-        pts <- lapply(1:length(tblTemplate$fldTemplateName), function(x) cbind(t=eval(parse(text=as.character(tblTemplate$fldPtsT[x]))), frq=eval(parse(text=as.character(tblTemplate$fldPtsFrq[x]))), amp=-0.01*eval(parse(text=as.character(tblTemplate$fldPtsAmp[x])))))
+        pts <- lapply(1:length(tblTemplate$fldTemplateName), function(x) cbind(t = eval(parse(text = as.character(tblTemplate$fldPtsT[x]))), frq = eval(parse(text = as.character(tblTemplate$fldPtsFrq[x]))), amp = -0.01*eval(parse(text = as.character(tblTemplate$fldPtsAmp[x])))))
     }
     
     # reconstruct '__Template' objects
     if(std.type == "'BIN'") {
-    	templates <- lapply(1:length(tblTemplate$fldTemplateName), function(x) new('binTemplate', clip.path=as.character(tblTemplate$fldClipPath[x]), samp.rate=tblTemplate$fldSampRate[x], pt.on=pt.on[[x]], pt.off=pt.off[[x]], t.step=tblTemplate$fldTStep[x], frq.step=tblTemplate$fldFrqStep[[x]], n.t.bins=tblTemplate$fldNTBins[x], first.t.bin=tblTemplate$fldFirstTBin[x], n.frq.bins=tblTemplate$fldNFrqBins[x], duration=tblTemplate$fldDuration[x], frq.lim=eval(parse(text=as.character(tblTemplate$fldFrqLim[x]))), wl=tblTemplate$fldFFTwl[x], ovlp=tblTemplate$fldFFTovlp[x], wn=as.character(tblTemplate$fldFFTwn[x]), score.cutoff=tblTemplate$fldScoreCutoff[x], comment=as.character(tblTemplate$fldComment[x])))
+    	templates <- lapply(1:length(tblTemplate$fldTemplateName), function(x) new('binTemplate', clip.path = as.character(tblTemplate$fldClipPath[x]), samp.rate = tblTemplate$fldSampRate[x], pt.on = pt.on[[x]], pt.off = pt.off[[x]], t.step = tblTemplate$fldTStep[x], frq.step = tblTemplate$fldFrqStep[[x]], n.t.bins = tblTemplate$fldNTBins[x], first.t.bin = tblTemplate$fldFirstTBin[x], n.frq.bins = tblTemplate$fldNFrqBins[x], duration = tblTemplate$fldDuration[x], frq.lim = eval(parse(text = as.character(tblTemplate$fldFrqLim[x]))), wl = tblTemplate$fldFFTwl[x], ovlp = tblTemplate$fldFFTovlp[x], wn = as.character(tblTemplate$fldFFTwn[x]), score.cutoff = tblTemplate$fldScoreCutoff[x], comment = as.character(tblTemplate$fldComment[x])))
     } else if(std.type == "'COR'") {
-    	templates <- lapply(1:length(tblTemplate$fldTemplateName), function(x) new('corTemplate', clip.path=as.character(tblTemplate$fldClipPath[x]), samp.rate=tblTemplate$fldSampRate[x], pts=pts[[x]], t.step=tblTemplate$fldTStep[x], frq.step=tblTemplate$fldFrqStep[x], n.t.bins=tblTemplate$fldNTBins[x], first.t.bin=tblTemplate$fldFirstTBin[x], n.frq.bins=tblTemplate$fldNFrqBins[x], duration=tblTemplate$fldDuration[x], frq.lim=eval(parse(text=as.character(tblTemplate$fldFrqLim[x]))), wl=tblTemplate$fldFFTwl[x], ovlp=tblTemplate$fldFFTovlp[x], wn=as.character(tblTemplate$fldFFTwn[x]), score.cutoff=tblTemplate$fldScoreCutoff[x], comment=as.character(tblTemplate$fldComment[x])))
+    	templates <- lapply(1:length(tblTemplate$fldTemplateName), function(x) new('corTemplate', clip.path = as.character(tblTemplate$fldClipPath[x]), samp.rate = tblTemplate$fldSampRate[x], pts = pts[[x]], t.step = tblTemplate$fldTStep[x], frq.step = tblTemplate$fldFrqStep[x], n.t.bins = tblTemplate$fldNTBins[x], first.t.bin = tblTemplate$fldFirstTBin[x], n.frq.bins = tblTemplate$fldNFrqBins[x], duration = tblTemplate$fldDuration[x], frq.lim = eval(parse(text = as.character(tblTemplate$fldFrqLim[x]))), wl = tblTemplate$fldFFTwl[x], ovlp = tblTemplate$fldFFTovlp[x], wn = as.character(tblTemplate$fldFFTwn[x]), score.cutoff = tblTemplate$fldScoreCutoff[x], comment = as.character(tblTemplate$fldComment[x])))
     }        
     # Name each list with the template name    
     names(templates) <- as.character(tblTemplate$fldTemplateName)        
     # Join the templates as '__TemplateList'
     if(std.type == "'BIN'") {
-    	templates <- new('binTemplateList', templates=templates)
+    	templates <- new('binTemplateList', templates = templates)
     } else if(std.type == "'COR'") {
-        templates <- new('corTemplateList', templates=templates)
+        templates <- new('corTemplateList', templates = templates)
     }
     
     message(if(class(tblTemplate) == 'data.frame') {paste('Done! Download time:', round(Sys.time()-start.time, 2), 'seconds')
-            } else paste("Download unsuccessful; RODBC returned errors: ", paste(tblTemplate, collapse=" ")))
+            } else paste("Download unsuccessful; RODBC returned errors: ", paste(tblTemplate, collapse = " ")))
     
     return(templates)
 }        

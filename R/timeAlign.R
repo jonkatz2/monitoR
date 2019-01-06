@@ -5,8 +5,8 @@
 
 timeAlign <- function(
   x,                 # Object of class'detectionList', single data frame with results from multiple templates, list of file paths or data frames with results from one or more templates.
-  what='detections', # If an detection list is provided, should detections or peaks be used?
-  tol=1              # Alignment checks to see if the surrounding events are within 0.5 * this value, in seconds 
+  what = 'detections', # If an detection list is provided, should detections or peaks be used?
+  tol = 1              # Alignment checks to see if the surrounding events are within 0.5 * this value, in seconds 
   ) {  
 
     # cut the tolerance value in half to produce a +/- time buffer
@@ -25,7 +25,7 @@ timeAlign <- function(
             all.results <- lapply(x, function(file) {
               chars <- nchar(file)
               ext <- tolower(gsub(".*\\.", "", file))
-                if(all(ext == 'csv')) {all.results <- lapply(x, function(data) read.csv(data, stringsAsFactors=FALSE))
+                if(all(ext == 'csv')) {all.results <- lapply(x, function(data) read.csv(data, stringsAsFactors = FALSE))
                 } else stop('x must be a csv file.')
                 return(all.results)
                 })

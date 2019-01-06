@@ -24,7 +24,7 @@ function (
     # Two lines below drop parts of wave that go beyond step vector. I added them, but are they needed? I think so, at least for n, so the X is correct
     # New calculation of n is a bit tricky because of tails with no overlap at beginning and end
     n <- length(step)*wl  - (length(step)-1)*ovlp*wl/100 
-    wave <- wave[1:n, ,drop=FALSE]
+    wave <- wave[1:n, ,drop = FALSE]
     z <- stft(wave = wave, f = f, wl = wl, zp = zp, step = step, wn = wn, fftw = fftw)
     X <- seq(0, (n - wl)/f, length.out = length(step)) # X is time, and here is for the left edge of time bins (could be right too, or center even). Note that the left edge of the last time bin is not affected by ovlp.
     Y <- seq((f/1000)/(wl + zp), f/2000, length.out = nrow(z))

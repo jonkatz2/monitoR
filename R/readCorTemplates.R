@@ -3,34 +3,34 @@
 
 readCorTemplates <-
 function(
-   files=NULL,                # Named list of files to read in
-   dir='.',                   # Or a directory to look in for files with a specified ext
-   ext='ct',                  # Extension for binary template files
-   parallel=FALSE
+   files = NULL,                # Named list of files to read in
+   dir = '.',                   # Or a directory to look in for files with a specified ext
+   ext = 'ct',                  # Extension for binary template files
+   parallel = FALSE
 ) {
 
    # Select lapplyfun
    if(parallel) {
-      lapplyfun <- function(X, FUN) parallel::mclapply(X, FUN, mc.cores=parallel::detectCores())
+      lapplyfun <- function(X, FUN) parallel::mclapply(X, FUN, mc.cores = parallel::detectCores())
    } else lapplyfun <- lapply
 
    # If needed, determine files
    if(is.null(files)) {
-      filesfull <- list.files(path=dir, full.names=TRUE, pattern=paste('\\.', ext, '$', sep=''))
-      files <- list.files(path=dir, pattern=paste('\\.', ext, '$', sep=''))
+      filesfull <- list.files(path = dir, full.names = TRUE, pattern = paste('\\.', ext, '$', sep = ''))
+      files <- list.files(path = dir, pattern = paste('\\.', ext, '$', sep = ''))
       #names(filesfull) <- sapply(files, function(x) strsplit(x, '\\.')[[1]][1])
       names(filesfull) <- gsub("\\.[^.]*$", "", files)
    } else {
       #if(is.null(names(files))) names(files) <- sapply(files, function(x) strsplit(x, '\\.')[[1]][1])
-      filesfull <- paste(dir, '/', files, sep='')
+      filesfull <- paste(dir, '/', files, sep = '')
       names(filesfull) <- if(is.null(names(files))) gsub("\\.[^.]*$", "", files) else names(files)
       #names(filesfull) <- names(files)
    }
 
    # Read in templaes
-   template.L <- lapplyfun(filesfull, function(x) readOneCorTemplate(file=x))
+   template.L <- lapplyfun(filesfull, function(x) readOneCorTemplate(file = x))
 
    # Return template list
-   templates <- new('corTemplateList', templates=template.L)
+   templates <- new('corTemplateList', templates = template.L)
    return(templates)
 }

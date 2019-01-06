@@ -7,7 +7,7 @@ function(
   cutoff.return,  # Events with no values above will not be returned
   cutoff.ignore,  # Peaks with values below will be dropped at the start
   tol,            # Tolerance (s). If a peak is within tol of a peak from another template, they are in the same event
-  n.drop=0        # Rows with this many templates or fewer will be dropped. n.drop=0 drops none.
+  n.drop = 0        # Rows with this many templates or fewer will be dropped. n.drop = 0 drops none.
 ) {
 
   # To avoid CRAN check notes
@@ -40,7 +40,7 @@ function(
   }
 
   # Combine all peaks together initially with no merging--one template per row
-  pk.idx.mat <- times.mat <- matrix(NA, nrow=n.pks, ncol=n.templates, dimnames=list(time.mean=1:n.pks, template=names(detection.obj@templates)))
+  pk.idx.mat <- times.mat <- matrix(NA, nrow = n.pks, ncol = n.templates, dimnames = list(time.mean = 1:n.pks, template = names(detection.obj@templates)))
   n.in <- 0
   for(i in names(detection.obj@templates)) {
     pks <- pks.L[[i]]
@@ -50,12 +50,12 @@ function(
     n.in <- n.in + n.pks
   }
 
-  t.mean <- rowMeans(times.mat, na.rm=TRUE)
+  t.mean <- rowMeans(times.mat, na.rm = TRUE)
 
   # Sort matrices by mean time
   times.mat <- times.mat[order(t.mean), ]
   pk.idx.mat <- pk.idx.mat[order(t.mean), ]
-  t.mean <- rowMeans(times.mat, na.rm=TRUE)
+  t.mean <- rowMeans(times.mat, na.rm = TRUE)
   n.events <- nrow(times.mat)
 
   # Now go through the times.mat matrix row by row, and then cell by cell, moving times to the row below if they are close to the mean
@@ -78,7 +78,7 @@ function(
         pk.idx.mat <- pk.idx.mat[-i, ]
         dropped <- TRUE
       }
-      t.mean <- rowMeans(times.mat, na.rm=TRUE)
+      t.mean <- rowMeans(times.mat, na.rm = TRUE)
       i <- i + 1
     }
   }
@@ -88,7 +88,7 @@ function(
   # Put together matrices of scores and absolute time
   scores.mat <- date.time.mat <- pk.idx.mat
   #colnames(scores.mat) <- colnames(date.time.mat) <- colnames(times.mat) <- names(pks.L)
-  dimnames(scores.mat) <- dimnames(date.time.mat) <- dimnames(times.mat) <- list(time.mean=t.mean, template=names(detection.obj@templates))
+  dimnames(scores.mat) <- dimnames(date.time.mat) <- dimnames(times.mat) <- list(time.mean = t.mean, template = names(detection.obj@templates))
   for(i in 1:n.templates) {
     t <- pks.L[[i]]$date.time
     s <- pks.L[[i]]$score
@@ -97,15 +97,15 @@ function(
   }
 
   # Find those rows with at least one score above the cutoff and enough templates to not be dropped
-  which.rows <- apply(scores.mat, 1,max, na.rm=TRUE)>cutoff.return & apply(times.mat, 1,function(x) sum(!is.na(x)))>n.drop
+  which.rows <- apply(scores.mat, 1,max, na.rm = TRUE)>cutoff.return & apply(times.mat, 1,function(x) sum(!is.na(x)))>n.drop
 
   # Trim down all matrices
   times.mat <- times.mat[which.rows, ]
   scores.mat <- scores.mat[which.rows, ]
   date.time.mat <- date.time.mat[which.rows, ]
-  t.mean <- rowMeans(times.mat, na.rm=TRUE)
+  t.mean <- rowMeans(times.mat, na.rm = TRUE)
   rownames(scores.mat) <- rownames(date.time.mat) <- rownames(times.mat) <- round(t.mean, 3)
 
   # RETURNS A LIST
-  return(list(times.mean=t.mean, times=times.mat, date.time=date.time.mat, scores=scores.mat))
+  return(list(times.mean = t.mean, times = times.mat, date.time = date.time.mat, scores = scores.mat))
 }

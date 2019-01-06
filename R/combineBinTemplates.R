@@ -10,10 +10,10 @@ combineBinTemplates <- function(...) {
       x <- c(x, temps[[i]]@templates)
    }
 
-   templates <- new('binTemplateList', templates=x)
+   templates <- new('binTemplateList', templates = x)
 
    while(any(dups <- duplicated(names(templates@templates)))) {
-     warning("Found identical template names: ", paste(names(templates@templates)[dups], collapse=", "), ". Adding suffix.")   
+     warning("Found identical template names: ", paste(names(templates@templates)[dups], collapse = ", "), ". Adding suffix.")   
      names(templates@templates)[dups] <- paste0(names(templates@templates)[dups], ".2")
    }
 

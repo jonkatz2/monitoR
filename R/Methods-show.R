@@ -7,7 +7,7 @@ setMethod('show', 'corTemplateList',
 
       templates <- object@templates
       dat <- data.frame(
-         'original.recording'=sapply(templates, function(x) x@clip.path), 
+         'original.recording' = sapply(templates, function(x) x@clip.path), 
          'sample.rate'=       sapply(templates, function(x) x@samp.rate), 
          'lower.frequency'=   sapply(templates, function(x) round(x@frq.lim[1], 3)), 
          'upper.frequency'=   sapply(templates, function(x) round(x@frq.lim[2], 3)), 
@@ -18,7 +18,7 @@ setMethod('show', 'corTemplateList',
          'score.cutoff'=      sapply(templates, function(x) x@score.cutoff)
       )
 
-      cat('\nObject of class \"', class(object), '\"\n', sep='')
+      cat('\nObject of class \"', class(object), '\"\n', sep = '')
       cat('\tcontaining ', length(object@templates), ' templates\n')
       print(dat)
    }
@@ -28,8 +28,8 @@ setMethod('show', 'binTemplateList',
    function(object) {
       templates <- object@templates
       dat <- data.frame(
-         'original.recording'=sapply(templates, function(x) x@clip.path), 
-         'sample.rate'=sapply(templates, function(x) x@samp.rate), 
+         'original.recording' = sapply(templates, function(x) x@clip.path), 
+         'sample.rate' = sapply(templates, function(x) x@samp.rate), 
          'lower.frequency'=   sapply(templates, function(x) x@frq.lim[1]), 
          'upper.frequency'=   sapply(templates, function(x) x@frq.lim[2]), 
          'duration'=          sapply(templates, function(x) round(x@duration, 2)), 
@@ -38,7 +38,7 @@ setMethod('show', 'binTemplateList',
          'score.cutoff'=      sapply(templates, function(x) x@score.cutoff)
       )
 
-      cat('\nObject of class \"', class(object), '\"\n', sep='')
+      cat('\nObject of class \"', class(object), '\"\n', sep = '')
       cat('\n\tcontaining ', length(object@templates), ' templates\n')
       print(dat)
    }
@@ -56,9 +56,9 @@ setMethod('show', 'templateScores',
       cat('\nScore information\n')
       print(
          data.frame(
-            'min.score'=sapply(object@scores, function(x) min(round(x$score, 2))), 
-            'max.score'=sapply(object@scores, function(x) max(round(x$score, 2))), 
-            'n.scores'=sapply(object@scores, function(x) nrow(x))
+            'min.score' = sapply(object@scores, function(x) min(round(x$score, 2))), 
+            'max.score' = sapply(object@scores, function(x) max(round(x$score, 2))), 
+            'n.scores' = sapply(object@scores, function(x) nrow(x))
          )
       )
    }
@@ -77,12 +77,12 @@ setMethod('show', 'detectionList',
       cat('\nDetection information\n')
       print(
          data.frame(
-            'n.peaks'=sapply(object@peaks, function(x) nrow(x)), 
-            'n.detections'=sapply(object@detections, function(x) nrow(x)), 
-            'min.peak.score'=sapply(object@peaks, function(x) min(x$score)), 
-            'max.peak.score'=sapply(object@peaks, function(x) max(x$score)), 
-            'min.detection.score'=sapply(object@detections, function(x) if(length(x$score) > 0) min(x$score) else NA), 
-            'max.detection.score'=sapply(object@detections, function(x) if(length(x$score) > 0) max(x$score) else NA)
+            'n.peaks' = sapply(object@peaks, function(x) nrow(x)), 
+            'n.detections' = sapply(object@detections, function(x) nrow(x)), 
+            'min.peak.score' = sapply(object@peaks, function(x) min(x$score)), 
+            'max.peak.score' = sapply(object@peaks, function(x) max(x$score)), 
+            'min.detection.score' = sapply(object@detections, function(x) if(length(x$score) > 0) min(x$score) else NA), 
+            'max.detection.score' = sapply(object@detections, function(x) if(length(x$score) > 0) max(x$score) else NA)
          )
       )
 

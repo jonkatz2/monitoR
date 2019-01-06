@@ -2,7 +2,7 @@
 # Modified 2015 Sept 6
 
 dbDownloadCardRecorderID <- function(
-    db.name='acoustics',        # Connection name in ODBC _and_ on host
+    db.name = 'acoustics',        # Connection name in ODBC _and_ on host
     uid,                        # Database User ID, if not in ODBC
     pwd,                        # Database Password, if not in ODBC
     date.deployed,              # First deploy date to download 
@@ -35,7 +35,7 @@ dbDownloadCardRecorderID <- function(
     
     if(!missing(loc.prefix)){
         if (nchar(loc.prefix[1]) != 6) stop(paste('loc.prefix must be 6 characters, got', loc.prefix))
-        loc.prefix <- paste0("(`tblLocation`.`fldLocationNameAbbreviation` = ", paste("'", loc.prefix, "'", sep="", collapse=(" OR `tblLocation`.`fldLocationNameAbbreviation` =  ")), ")")
+        loc.prefix <- paste0("(`tblLocation`.`fldLocationNameAbbreviation` = ", paste("'", loc.prefix, "'", sep = "", collapse = (" OR `tblLocation`.`fldLocationNameAbbreviation` =  ")), ")")
     } else loc.prefix <- ""
     
     if(!missing(date.deployed)) {
@@ -60,7 +60,7 @@ dbDownloadCardRecorderID <- function(
     cardrecorder <- RODBC::sqlQuery(dbCon, query)
     
     message(if(class(cardrecorder) == 'data.frame') {paste('Done! Download time:', round(Sys.time()-start.time, 2), 'seconds')
-            } else paste("Download unsuccessful; RODBC returned errors: ", paste(cardrecorder, collapse=" ")))
+            } else paste("Download unsuccessful; RODBC returned errors: ", paste(cardrecorder, collapse = " ")))
     
     return(cardrecorder)
 }    

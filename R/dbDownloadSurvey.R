@@ -2,7 +2,7 @@
 # Modified 2015 Sept 6
 
 dbDownloadSurvey <- function(
-    db.name='acoustics',                # Connection name in ODBC _and_ on host
+    db.name = 'acoustics',                # Connection name in ODBC _and_ on host
     uid,                                # Database User ID, if not in ODBC
     pwd,                                # Database Password, if not in ODBC
     start.date,                         # First date to download survey paths 
@@ -37,31 +37,31 @@ dbDownloadSurvey <- function(
     op <- op[2:5]
     
     if(!missing(loc.prefix)) {
-        loc.prefix <- paste0("(", paste0("`tblLocation`.`fldLocationNameAbbreviation` = '", paste0(loc.prefix, collapse="' OR `tblLocation`.`fldLocationNameAbbreviation` = '")), "')")
+        loc.prefix <- paste0("(", paste0("`tblLocation`.`fldLocationNameAbbreviation` = '", paste0(loc.prefix, collapse = "' OR `tblLocation`.`fldLocationNameAbbreviation` = '")), "')")
     } else {
         loc.prefix <- ""
     }
     
     if(!missing(start.date)) {
-        start.date <- paste0("(", paste0(" `fldOriginalDateModified` >= '", paste0(start.date, collapse="' OR `tblSurvey`.`fldOriginalDateModified` = '")), "')")
+        start.date <- paste0("(", paste0(" `fldOriginalDateModified` >= '", paste0(start.date, collapse = "' OR `tblSurvey`.`fldOriginalDateModified` = '")), "')")
     } else {
         start.date <- ""
     }
     
     if(!missing(end.date)) {
-        end.date <- paste0("(", paste0(" `tblSurvey`.`fldOriginalDateModified` <= '", paste0(end.date, collapse="' OR `tblSurvey`.`fldOriginalDateModified` = '")), "')")
+        end.date <- paste0("(", paste0(" `tblSurvey`.`fldOriginalDateModified` <= '", paste0(end.date, collapse = "' OR `tblSurvey`.`fldOriginalDateModified` = '")), "')")
     } else {
         end.date <- ""
     }
     
     if(!missing(samp.rate)) {
-        samp.rate <- paste0("(", paste0(" `tblSurvey`.`fldSampleRate` = '", paste0(samp.rate, collapse="' OR `tblSurvey`.`fldSampleRate` = '")), "')")
+        samp.rate <- paste0("(", paste0(" `tblSurvey`.`fldSampleRate` = '", paste0(samp.rate, collapse = "' OR `tblSurvey`.`fldSampleRate` = '")), "')")
     } else {
         samp.rate <- ""
     }
     
     if(!missing(ext)) {
-        ext <- paste0("(", paste0(" `tblSurvey`.`fldRecordingFormat` = '", paste0(ext, collapse="' OR `tblSurvey`.`fldRecordingFormat` = '")), "')")
+        ext <- paste0("(", paste0(" `tblSurvey`.`fldRecordingFormat` = '", paste0(ext, collapse = "' OR `tblSurvey`.`fldRecordingFormat` = '")), "')")
     } else {
         ext <- ""
     }
@@ -77,10 +77,10 @@ dbDownloadSurvey <- function(
     on.exit(close(dbCon))
     
     # Download the names of the surveys 
-    surveys <- RODBC::sqlQuery(dbCon, query, stringsAsFactors=FALSE)
+    surveys <- RODBC::sqlQuery(dbCon, query, stringsAsFactors = FALSE)
     
     message(if(class(surveys) == 'data.frame') {paste('Done! Download time:', round(Sys.time()-start.time, 2), 'seconds')
-            } else paste("Download unsuccessful; RODBC returned errors: ", paste(surveys, collapse=" ")))
+            } else paste("Download unsuccessful; RODBC returned errors: ", paste(surveys, collapse = " ")))
     
     return(surveys)
 }    

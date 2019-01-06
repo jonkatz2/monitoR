@@ -31,7 +31,7 @@ function(
       }
       if(is.null(names(value))) names(value) <- names(object@templates)[1:length(value)] else 
          if (!all(names(value) %in% names(object@templates))) 
-            stop('Name or names given for new cutoffs (', paste(names(value), collapse=', '), ') are not present in the templates (', paste(names(object@templates), collapse=', '), ').')
+            stop('Name or names given for new cutoffs (', paste(names(value), collapse = ', '), ') are not present in the templates (', paste(names(object@templates), collapse = ', '), ').')
       for(i in names(value)) {
          object@templates[[i]]@comment <- as.vector(value[i]) 
       }

@@ -3,9 +3,9 @@
 getPeaks <-
 function(
    detection.obj,            # A 
-   which.one=names(detection.obj@detections),     # Name of template(s) that should be returned
-   id=NULL,                  # Additional column that should be added to returned data frame
-   output='data frame'       # Format of output, 'data frame' or 'list'
+   which.one = names(detection.obj@detections),     # Name of template(s) that should be returned
+   id = NULL,                  # Additional column that should be added to returned data frame
+   output = 'data frame'       # Format of output, 'data frame' or 'list'
 ) {
    # Pull out the template names for adding to output
    pks <- detection.obj@peaks

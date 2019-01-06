@@ -2,7 +2,7 @@
 # Modified 2015 Sept 6
 
 dbDownloadResult <- function(
-    db.name='acoustics',        # Connection name in ODBC _and_ on host
+    db.name = 'acoustics',        # Connection name in ODBC _and_ on host
     uid,                        # Database User ID, if not in ODBC
     pwd,                        # Database Password, if not in ODBC
     survey,                     # File path to survey
@@ -38,14 +38,14 @@ dbDownloadResult <- function(
 	# Choose whether to download all templates or just the specified templates
 	if(!class(templates) %in% c("binTemplateList", "corTemplateList")) {
             cat('\nDownloading templates\n')
-        if(missing(uid) && missing(pwd)) {templates <- dbDownloadTemplate(db.name=db.name, by.cat="names", type=std.type, template.group=templates, FFTwl=FFTwl, FFTwn=FFTwn, FFTovlp=FFTovlp)
-        } else if(missing(uid) && !missing(pwd)) {templates <- dbDownloadTemplate(db.name=db.name, pwd=pwd, by.cat="names", type=std.type, template.group=templates, FFTwl=FFTwl, FFTwn=FFTwn, FFTovlp=FFTovlp)
-        } else templates <- dbDownloadTemplate(db.name=db.name, uid=uid, pwd=pwd, by.cat="names", type=std.type, template.group=templates, FFTwl=FFTwl, FFTwn=FFTwn, FFTovlp=FFTovlp)
+        if(missing(uid) && missing(pwd)) {templates <- dbDownloadTemplate(db.name = db.name, by.cat = "names", type = std.type, template.group = templates, FFTwl = FFTwl, FFTwn = FFTwn, FFTovlp = FFTovlp)
+        } else if(missing(uid) && !missing(pwd)) {templates <- dbDownloadTemplate(db.name = db.name, pwd = pwd, by.cat = "names", type = std.type, template.group = templates, FFTwl = FFTwl, FFTwn = FFTwn, FFTovlp = FFTovlp)
+        } else templates <- dbDownloadTemplate(db.name = db.name, uid = uid, pwd = pwd, by.cat = "names", type = std.type, template.group = templates, FFTwl = FFTwl, FFTwn = FFTwn, FFTovlp = FFTovlp)
         } 
 	# make a new variable to record the names of the templates that detected the hits
 	templateID <- templateNames(templates)
 	# get list of templates
-	template.dat <- RODBC::sqlQuery(dbCon, paste0("Select `pkTemplateID`, `fldTemplateName` FROM `tblTemplate` WHERE `fldTemplateName` = '", paste0(templateID, collapse="' OR `fldTemplateName` = '"), "'")) 
+	template.dat <- RODBC::sqlQuery(dbCon, paste0("Select `pkTemplateID`, `fldTemplateName` FROM `tblTemplate` WHERE `fldTemplateName` = '", paste0(templateID, collapse = "' OR `fldTemplateName` = '"), "'")) 
 	# replace template names in new variable with fkTemplateIDs
 	for (i in 1:length(templateID)){
             templateID[i] <- template.dat$pkTemplateID[template.dat$fldTemplateName == templateID[i]]
@@ -57,21 +57,21 @@ dbDownloadResult <- function(
     survey.data <- score.L <- peaks.L <- detections.L <- wl <- ovlp <- wn <- list()
     for(i in 1:length(templateID)){
 #		score.L[[i]] <- data.frame(
-#			date.time=NULL, 
-#                    time=NULL, 
-#                    score=NULL, 
-#                    on.amp=NULL, 
-#                    off.amp=NULL
+#			date.time = NULL, 
+#                    time = NULL, 
+#                    score = NULL, 
+#                    on.amp = NULL, 
+#                    off.amp = NULL
 #                    )
 		wl[[i]] <- templates@templates[[i]]@wl
 		ovlp[[i]] <- templates@templates[[i]]@ovlp
 		wn[[i]] <- templates@templates[[i]]@wn   
-        if(i == 1) {survey.spec <- spectro(wave=survey.wave, wl=wl[[i]], ovlp=ovlp[[i]], wn=wn[[i]])
-        } else if(!all(wl[[i]] == wl[[i-1]], ovlp[[i]] == ovlp[[i-1]], wn[[i]] == wn[[i-1]])) survey.spec <- spectro(wave=survey.wave, wl=wl[[i]], ovlp=ovlp[[i]], wn=wn[[i]])        
+        if(i == 1) {survey.spec <- spectro(wave = survey.wave, wl = wl[[i]], ovlp = ovlp[[i]], wn = wn[[i]])
+        } else if(!all(wl[[i]] == wl[[i-1]], ovlp[[i]] == ovlp[[i-1]], wn[[i]] == wn[[i-1]])) survey.spec <- spectro(wave = survey.wave, wl = wl[[i]], ovlp = ovlp[[i]], wn = wn[[i]])        
         t.bins <- survey.spec$time
         frq.bins <- survey.spec$freq
                         
-		survey.data[[i]] <- list(amp=survey.spec$amp, t.bins=t.bins, frq.bins=frq.bins)
+		survey.data[[i]] <- list(amp = survey.spec$amp, t.bins = t.bins, frq.bins = frq.bins)
 		cat('\nDownloading ', templateNames(templates)[i], '\n')
 		query <- paste0("SELECT `fldDateTime`, `fldTimeZone`, `fldTime`, `fldOnAmp`, `fldOffAmp`, `fldScore` FROM `tblResult` WHERE `fkSurveyID` = ", surveyID, " AND `fkTemplateID` = ", templateID[i])
 #		score.L[[i]] <- RODBC::sqlQuery(dbCon, query, ...)
@@ -80,19 +80,19 @@ dbDownloadResult <- function(
 #		score.L[[i]] <- score.L[[i]][, -2]
 #		names(score.L[[i]]) <- c("date.time", "time", "score")
 #		peaks.L[[i]] <- score.L[[i]]
-        score.L[[i]] <- data.frame("date.time"=NA, "time"=NA, "score"=NA)
+        score.L[[i]] <- data.frame("date.time" = NA, "time" = NA, "score" = NA)
 		peaks.L[[i]] <- RODBC::sqlQuery(dbCon, query, ...) #
 		date.time <- paste(peaks.L[[i]][, 'fldDateTime'], peaks.L[[i]][, 'fldTimeZone']) #
 		peaks.L[[i]]['fldDateTime'] <- date.time #
 		peaks.L[[i]] <- peaks.L[[i]][, -2] #
 		names(peaks.L[[i]]) <- c("date.time", "time", "on.amp", "off.amp", "score") #
 		peaks.L[[i]]['detection'] <- FALSE
-		peaks.L[[i]][peaks.L[[i]]['score']>=templates@templates[[i]]@score.cutoff, 'detection'] <- TRUE
+		peaks.L[[i]][peaks.L[[i]]['score']>= templates@templates[[i]]@score.cutoff, 'detection'] <- TRUE
 		detections.L[[i]] <- peaks.L[[i]][peaks.L[[i]]['detection'] == TRUE, c("date.time", "time", "score")]
     }
     names(survey.data) <- templateNames(templates)
     names(score.L) <- names(peaks.L) <- names(detections.L) <- templateNames(templates)
-	object <- new('detectionList', survey.name=survey, survey=survey.wave, survey.data=survey.data, templates=templates@templates, scores=score.L, peaks=peaks.L, detections=detections.L)
+	object <- new('detectionList', survey.name = survey, survey = survey.wave, survey.data = survey.data, templates = templates@templates, scores = score.L, peaks = peaks.L, detections = detections.L)
    cat('\nDone\n')
    return(object)
 }        

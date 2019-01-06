@@ -6,7 +6,7 @@ templateNames <- function(object) return(names(object@templates))
 
 `templateNames<-` <-
 function(
-   object=NULL, 
+   object = NULL, 
    value
 ) {
 
