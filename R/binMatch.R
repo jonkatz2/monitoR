@@ -47,7 +47,7 @@ function(
      date.time.info <- regmatches(survey.short, regexpr('[0-9]{4}-[0-9]{2}-[0-9]{2}[ _][0-9]{6}[ _][A-Z0-9]{1,7}', survey.short))
      date.time.info <- gsub("_", " ", date.time.info)
      if(length(date.time.info) == 1 && nchar(date.time.info) %in% 19:23)
-       file.time <- as.POSIXct(substr(date.time.info, start = 1, stop = 17), tz = substr(date.time.info, start = 19, stop = length(date.time.info)), format = '%Y-%m-%d %H%M%S') 
+       file.time <- as.POSIXct(substr(date.time.info, start = 1, stop = 17), tz = substr(date.time.info, start = 19, stop = nchar(date.time.info)), format = '%Y-%m-%d %H%M%S') 
      else {
        warning('time.source was set to \"filename\" but file name does not have date and time info, so using \"fileinfo\" instead')
        file.time <- file.info(survey)$mtime
