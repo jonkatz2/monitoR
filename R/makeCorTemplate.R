@@ -33,6 +33,11 @@ function(
    clip.path <- clip
    clip <- readClip(clip)
 
+   if (!write.wav) {
+     clipnow <- clip
+     on.exit(file.remove(clipnow))
+   }
+
    # Trim clip
    if(is.na(t.lim[1])) {
      t.lim <- c(0, Inf)

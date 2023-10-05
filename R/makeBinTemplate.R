@@ -57,6 +57,12 @@ function(
    # Creates a wav file for any clip elements that are not already files
    clip <- getClip(clip, name = deparse(substitute(clip)), write.wav = write.wav)
 
+   if (!write.wav) {
+     clipnow <- clip
+     # Below might throw error with more than 1 clip
+     on.exit(file.remove(clipnow))
+   }
+
 ##### Single clip ##### 
    if(length(clip) == 1) { 
       clip.path <- clip
