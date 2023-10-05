@@ -39,13 +39,18 @@ getOneClip <- function(
       if(!write.wav) {
 	warning("output argument is \"file\" but write.wav argument is FALSE.\nFor better or worse, the monitoR package was designed to use acoustic files, so a temporary file will be used here.\nSet write.wav = TRUE to create a (non-temporary) file, or else specify a wav file instead of a Wave object.")
         fname <- tempfile(fileext = ".wav")
-        print(fname)
       }
       if(file.exists(fname)) stop("Will not create a wav file from this clip because a file with name ", fname, " already exists.")
       else tuneR::writeWave(clip, fname) 
       return(fname)
     } else 
     if(class(clip) == "character") {
+      if (grepl('^www.|^http:|^https:', clip)) {
+        warning('It looks like clip argument is a URL, so (trying to) download and save an audio file')
+        fname <- tempfile(fileext = substr(clip, nchar(clip) - 4, nchar(clip)))
+        download.file(clip, fname)
+        clip <- fname
+      }
       if(!file.exists(clip)) stop("clip argument seems to be a file name but no file with the name ", clip, " exists.")
       return(clip)
     } else 
@@ -57,6 +62,12 @@ getOneClip <- function(
       return(clip)
     } else 
     if(class(clip) == "character") {
+      if (grepl('^www.|^http:|^https:', clip)) {
+        warning('It looks like clip argument is a URL, so (trying to) download and save an audio file')
+        fname <- tempfile(fileext = substr(clip, nchar(clip) - 4, nchar(clip)))
+        download.file(clip, fname)
+        clip <- fname
+      }
       if(!file.exists(clip)) stop("clip argument seems to be a file name but no file with the name ", clip, " exists!")
       file.ext <- tolower(gsub(".*\\.", "", clip))
       if(file.ext == "wav") 

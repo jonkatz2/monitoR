@@ -3,7 +3,7 @@
 
 makeCorTemplate <-
 function(
-   clip,                                         # File path to wav or mp3 file
+   clip,                                           # File path to wav or mp3 file
    t.lim = NA,                                     # Time limits of spectrogram plot or template
    frq.lim = c(0, 12),                              # Frequency limits of spectrogram plot or template 
    select = 'auto',                                # How should points be selected? Options are 'cell' or 'click' (the same), 'rectangle', 'line', 'auto'
@@ -33,10 +33,10 @@ function(
    clip.path <- clip
    clip <- readClip(clip)
 
-   if (!write.wav) {
-     clipnow <- clip
-     on.exit(file.remove(clipnow))
-   }
+   #if (!write.wav) {
+   #  clipnow <- clip.path
+   #  on.exit(file.remove(clipnow))
+   #}
 
    # Trim clip
    if(is.na(t.lim[1])) {

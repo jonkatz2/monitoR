@@ -3,9 +3,9 @@
 
 makeBinTemplate <-
 function(
-   clip,               # File path to wav or mp3 file, or a list of exactly two file paths
+   clip,                 # File path to wav or mp3 file, or a list of exactly two file paths
    t.lim = NA,           # Length two vector of time limits of spectrogram plot or template, or a list of exactly two such vectors
-   frq.lim = c(0, 12),    # Frequency limits of spectrogram plot or template 
+   frq.lim = c(0, 12),   # Frequency limits of spectrogram plot or template 
    select = "auto",      # How should points be selected? Options are "cell" or "click" (the same), "rectangle", "auto"
    binary = TRUE,        # True for a binary plot with high and low amplitude cells
    buffer = 0,           # Buffer around "on" points for "rectangle" and "auto"
@@ -57,11 +57,11 @@ function(
    # Creates a wav file for any clip elements that are not already files
    clip <- getClip(clip, name = deparse(substitute(clip)), write.wav = write.wav)
 
-   if (!write.wav) {
-     clipnow <- clip
-     # Below might throw error with more than 1 clip
-     on.exit(file.remove(clipnow))
-   }
+   #if (!write.wav) {
+   #  clipnow <- clip
+   #  # Below might throw error with more than 1 clip
+   #  on.exit(file.remove(clipnow))
+   #}
 
 ##### Single clip ##### 
    if(length(clip) == 1) { 
