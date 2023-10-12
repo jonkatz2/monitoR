@@ -48,7 +48,7 @@ getOneClip <- function(
       if (grepl('^www.|^http:|^https:', clip)) {
         warning('It looks like clip argument is a URL, so (trying to) download and save an audio file')
         fname <- tempfile(fileext = substr(clip, nchar(clip) - 4, nchar(clip)))
-        download.file(clip, fname)
+        download.file(clip, fname, mode = 'wb')
         clip <- fname
       }
       if(!file.exists(clip)) stop("clip argument seems to be a file name but no file with the name ", clip, " exists.")
@@ -65,7 +65,7 @@ getOneClip <- function(
       if (grepl('^www.|^http:|^https:', clip)) {
         warning('It looks like clip argument is a URL, so (trying to) download and save an audio file')
         fname <- tempfile(fileext = substr(clip, nchar(clip) - 4, nchar(clip)))
-        download.file(clip, fname)
+        download.file(clip, fname, mode = 'wb')
         clip <- fname
       }
       if(!file.exists(clip)) stop("clip argument seems to be a file name but no file with the name ", clip, " exists!")
