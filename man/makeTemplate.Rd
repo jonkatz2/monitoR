@@ -144,7 +144,7 @@ makeBinTemplate(clip, t.lim = NA, frq.lim = c(0, 12), select = "auto", binary = 
   }
 
   \item{write.wav}{
-    If \code{clip} is a \code{Wave} object, should it be written to file? If \code{FALSE}, functions will return an error.
+    If \code{clip} is a \code{Wave} object, should it be written to file in the working directory? If \code{FALSE}, it will instead be written to a temporary file. See details.
   }
 
   \item{\dots}{
@@ -155,7 +155,8 @@ makeBinTemplate(clip, t.lim = NA, frq.lim = c(0, 12), select = "auto", binary = 
 \details{
 \code{makeCorTemplate} is used for making correlation templates, while \code{makeBinTemplate} is used to make binary point matching templates.
 \code{makeBinTemplate} can be used with one or two recordings (\code{clip} argument).
-If the \code{clip} argument is a \code{Wave} object, the functions will attempt to write the object(s) to a wav file(s) in the working directory, but only if the \code{write.wav} argument is \code{TRUE}. 
+If the \code{clip} argument is a \code{Wave} object, the functions will write the object(s) to a wav file(s), in the working directory if the \code{write.wav} argument is \code{TRUE}, otherwise as a temporary file. 
+This behavior extends from an early intent to link original recordings with templates while keeping the templates small. 
 To use templates produced with these functions, see \code{\link{corMatch}} or \code{\link{binMatch}}.
 To combine template lists, see \code{\link{combineCorTemplates}} or \code{\link{combineBinTemplates}}.
 }

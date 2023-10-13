@@ -1,5 +1,11 @@
 monitoR
 
+Version 1.1.2
+2023 October 13
+Change in behavior of make*Template() functions.
+No error thrown now when clip is a Wave object and write.wav = FALSE, but
+instead the Wave object is written to a temporary file.
+
 Version 1.0.8
 2018 April 28 Sasha D. Hafner
 
