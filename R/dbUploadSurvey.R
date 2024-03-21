@@ -32,7 +32,7 @@ dbUploadSurvey <- function(
             dm <- substr(survey.meta[, 'fldSurveyName'], start = 8, stop = 24)
             dm <- as.Date(dm, format = "%Y-%m-%d_%H%M%S")
             dm <- as.POSIXct(dm, tz = tz, format = "%Y-%m-%d_%H%M%S %Z")
-            survey.meta['fldOriginalDateModified'] <- as.character(dm, format = "%Y-%m-%d_%H%M%S %Z")
+            survey.meta['fldOriginalDateModified'] <- format(dm, format = "%Y-%m-%d_%H%M%S %Z")
         } else stop('No "fldOriginalDateModified" in metadata and file name does not have date and time info.')
         }
 	if(!update.query) { 

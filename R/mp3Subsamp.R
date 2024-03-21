@@ -27,7 +27,7 @@ mp3Subsamp <- function(
     
     if (length(system(command = "mp3splt -h", intern = TRUE))<10) stop("'mp3splt' not found; download mp3splt at\nhttp://mp3splt.sourceforge.net/mp3splt_page/home.php\n")
 
-    if(missing(csv.name)) csv.name <- paste(loc.prefix, '_', as.character(Sys.time(), format = '%Y-%m-%d'), '.csv', sep = '')
+    if(missing(csv.name)) csv.name <- paste(loc.prefix, '_', format(Sys.time(), format = '%Y-%m-%d'), '.csv', sep = '')
 
     if (nchar(loc.prefix) != 6) {stop(paste('loc.prefix must be 6 characters, got', loc.prefix))}
 
@@ -77,8 +77,8 @@ mp3Subsamp.one <- function(
     surv.end <- surv.start+duration
     # predict the new mdates and file names for each subsurvey
     time.remain <- rec.dur-surv.end
-    new.file.mdates <- as.character(file.mdate-time.remain, format = '%Y-%m-%d %H%M%S %Z')
-    new.mdates <- as.character(file.mdate-time.remain, format = '%Y-%m-%d_%H%M%S_%Z')
+    new.file.mdates <- format(file.mdate-time.remain, format = '%Y-%m-%d %H%M%S %Z')
+    new.mdates <- format(file.mdate-time.remain, format = '%Y-%m-%d_%H%M%S_%Z')
     filenames <- paste(loc.prefix, '_', new.mdates, sep = "")
     # Format seconds to mm.ss.xx, where xx are hundredths, for mp3splt 
     surv.start <- lapply(surv.start, function(x) {

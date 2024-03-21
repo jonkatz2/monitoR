@@ -20,8 +20,8 @@ function(
    copy = TRUE				  # Set to FALSE to rename files without moving
    ){
    
-   if(missing(csv.name) & length(loc.prefix) == 1) csv.name <- paste(loc.prefix, '_', as.character(Sys.time(), format = '%Y-%m-%d'), '.csv', sep = '')
-   else csv.name <- paste('metadata_', as.character(Sys.time(), format = '%Y-%m-%d'), '.csv', sep = '')
+   if(missing(csv.name) & length(loc.prefix) == 1) csv.name <- paste(loc.prefix, '_', format(Sys.time(), format = '%Y-%m-%d'), '.csv', sep = '')
+   else csv.name <- paste('metadata_', format(Sys.time(), format = '%Y-%m-%d'), '.csv', sep = '')
    
    if (all(nchar(loc.prefix) != 6)) stop(paste('loc.prefix must be 6 characters, got', paste0(loc.prefix, collapse = ", ")))
 

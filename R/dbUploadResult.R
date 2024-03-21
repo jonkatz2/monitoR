@@ -83,7 +83,7 @@ dbUploadResult <- function(
     pks.L <- rbindf(pks.L)
     # convert date.time characters to datetime data type format
     date.time <- unlist(lapply(X = pks.L$date.time, FUN = substr, start = 1, stop = 19))
-    tzone <- unlist(lapply(pks.L$date.time, function(x) as.character(x, format = '%Z')))             
+    tzone <- unlist(lapply(pks.L$date.time, function(x) format(x, format = '%Z')))             
     
     # the MySQL query to send the hits to the database
     query<- paste("INSERT INTO `tblResult` (`pkResultID`, `fkSurveyID`, `fkTemplateID`, `fkPersonID`, `fldDateTime`, `fldTimeZone`, `fldTime`, `fldScore`, `fldOnAmp`, `fldOffAmp`, `fldHit`, `fldVerified`, `fldAnalysisType`, `fldLikelihood`, `fldPosterior`, `fldCutoffValue`) VALUES ('", paste(NULL, "', '", survey.name, "', '", pks.L$template, "', '", analyst, "', '", date.time, "', '", tzone, "', '", pks.L$time, "', '", pks.L$score, "', '", if(length(pks.L$on.amp) == 0) {''} else pks.L$on.amp, "', '", if(length(pks.L$off.amp) == 0) {''} else pks.L$off.amp, "', '", if(length(pks.L$hit) == 0) {''} else pks.L$hit*1, "', '", if(length(pks.L$true) == 0) {-1} else pks.L$true*1, "', '", analysis.type, "', '', '', '", pks.L$score.cutoff, "')", sep = "", collapse = ", ('"), sep = "")

@@ -127,9 +127,9 @@ function(
             t.bin.ticks <- pretty(t.bins, n = 6)
         t.bin.ticks <- pretty(t.bins, n = 10, min.n = 5)   
         if(page.length<5) {
-            axis(1, at = t.bin.ticks/t.step, labels = as.character(as.POSIXct(t.bin.ticks+start.time, origin = "1960-01-01", tz = "GMT"), format = '%H:%M:%OS2'))
+            axis(1, at = t.bin.ticks/t.step, labels = format(as.POSIXct(t.bin.ticks+start.time, origin = "1960-01-01", tz = "GMT"), format = '%H:%M:%OS2'))
         } else {
-            axis(1, at = t.bin.ticks/t.step, labels = as.character(as.POSIXct(t.bin.ticks+start.time, origin = "1960-01-01", tz = "GMT"), format = '%H:%M:%S'))
+            axis(1, at = t.bin.ticks/t.step, labels = format(as.POSIXct(t.bin.ticks+start.time, origin = "1960-01-01", tz = "GMT"), format = '%H:%M:%S'))
         }
 
         if(!quiet && channel == 'both') {return(list(t = t.step, f = frq.step, tb = n.t.bins, amp = amp, whicht = which.t.bins, whichf = which.frq.bins, ampR = amp.R))#, tw = t.wave))
