@@ -30,7 +30,7 @@ Maintainer: Sasha D. Hafner \email{sdh11@cornell.edu}
 }
 
 \references{
-Ligges, Uwe.  2011. tuneR: Analysis of music. \url{http://r-forge.r-project.org/projects/tuner/}
+Ligges, Uwe.  2011. tuneR: Analysis of music. \url{https://r-forge.r-project.org/projects/tuner/}
 
 Sueur J, Aubin, T, Simonis, C. 2008. Seewave: a free modular tool for sound analysis and synthesis. \emph{Bioacoustics} \bold{18}, 213-226.
 

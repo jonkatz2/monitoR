@@ -22,7 +22,7 @@ bindEvents(rec, file, by.species = TRUE, parallel = FALSE, return.times = FALSE)
 \details{
 The csv file supplied must use a standard set of column names, which can occur in any order:
 
-\itemize{
+\describe{
   \item{\code{name}}{ Species name}
   \item{\code{start.time}}{ Event start time, in seconds}
   \item{\code{end.time}}{ Event end time, in seconds}    

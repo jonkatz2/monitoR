@@ -29,7 +29,7 @@ Creating a MySQL database typically requires three steps:\cr
 2. Create a MySQL instance on the host (locally or on a server)\cr
 3. Import schema to create tables, keys, and relationships\cr
 \cr
-The default acoustics database schema will allow the user to skip step 1; this function will take care of step 3.  The user must ensure that a database instance exists and is present in the ODBC data source list before attempting to use this function.  This function was tested using a schema automatically generated using the default "forward engineer" export function in MySQL Workbench with DROP statements. The default acoustics schema can be downloaded at \url{http://www.uvm.edu/rsenr/vtcfwru/R/?Page=monitoR/monitoR.htm}.
+The default acoustics database schema will allow the user to skip step 1; this function will take care of step 3.  The user must ensure that a database instance exists and is present in the ODBC data source list before attempting to use this function.  This function was tested using a schema automatically generated using the default "forward engineer" export function in MySQL Workbench with DROP statements. The default acoustics schema can be downloaded at \url{https://www.uvm.edu/rsenr/vtcfwru/R/?Page=monitoR/monitoR.htm}.
 }
 \value{
 If \code{tables}, a list:\cr

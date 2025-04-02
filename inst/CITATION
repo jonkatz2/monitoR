@@ -7,4 +7,4 @@ bibentry(bibtype = "Manual",
                     person("Jon", "Katz")),
          year = year,
          note = note,
-         url = "http://www.uvm.edu/rsenr/vtcfwru/R/?Page=monitoR/monitoR.htm")
+         url = "https://www.uvm.edu/rsenr/vtcfwru/R/?Page=monitoR/monitoR.htm")

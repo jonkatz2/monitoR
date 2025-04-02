@@ -30,7 +30,7 @@ mp3Subsamp(files, from = ".", to, csv.dir = to, csv.name, duration = 600,
 }
 
 \details{
-This function calls mp3splt, a third party library that must be installed separately from \url{http://mp3splt.sourceforge.net}.  Supplemental installation instructions are provided in the document "Installing_mp3splt.pdf", available the monitoR website \url{http://www.uvm.edu/rsenr/vtcfwru/R/?Page=monitoR/monitoR.htm}.  This function supplants \code{\link{fileCopyRename}} as a file copying function and a metadata collection tool when using the acoustic database.  
+This function calls mp3splt, a third party library that must be installed separately from \url{https://mp3splt.sourceforge.net/}.  Supplemental installation instructions are provided in the document "Installing_mp3splt.pdf", available from the monitoR website \url{https://www.uvm.edu/rsenr/vtcfwru/R/?Page=monitoR/monitoR.htm}.  This function supplants \code{\link{fileCopyRename}} as a file copying function and a metadata collection tool when using the acoustic database.  
 
 The survey file names produced will be of the form PREFIX_YYYY-mm-dd_HHMSS.mp3.  Surveys from the same location can be linked by the location prefix and differentiated by different modification dates.
 }

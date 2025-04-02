@@ -47,7 +47,7 @@ rename = TRUE, copy = TRUE)
   \item{copy}{Logical.  \code{FALSE} will disable file copying.}
 }
 \details{
-The file name is where two important pieces of metadata are encoded: the location (as the location prefix) and the date and time of recording (as the date modified of the original file). The detection functions \code{\link{corMatch}} \code{\link{binMatch}} are capable of using this data as a time reference. Time zone management is tricky; if recordings were made in a different time zone than the OS running \code{fileCopyRename}, specify the correct time zone for the recordings with the \code{rec.tz} argument. Unexpected results are possible, as time zone abbreviations in general use may not match those in the Internet Assigned Numbers Authority tz database. The most reliable way to specify time zone is to use the full name, most quickly seen using \code{\link[base]{OlsonNames}}, and also found on wikipedia: \url{http://en.wikipedia.org/wiki/List_of_tz_database_time_zones}.
+The file name is where two important pieces of metadata are encoded: the location (as the location prefix) and the date and time of recording (as the date modified of the original file). The detection functions \code{\link{corMatch}} \code{\link{binMatch}} are capable of using this data as a time reference. Time zone management is tricky; if recordings were made in a different time zone than the OS running \code{fileCopyRename}, specify the correct time zone for the recordings with the \code{rec.tz} argument. Unexpected results are possible, as time zone abbreviations in general use may not match those in the Internet Assigned Numbers Authority tz database. The most reliable way to specify time zone is to use the full name, most quickly seen using \code{\link[base]{OlsonNames}}, and also found on wikipedia: \url{https://en.wikipedia.org/wiki/List_of_tz_database_time_zones}.
 Metadata cannot be read for non-wave recordings, so typically a first function call is used to encode the location prefix and date modified into the file name and move it from the portable media, and a second function call with \code{metadata.ony = TRUE} is used after conversion to wave format to fill in the missing metadata.  
 The \code{full.survey.names} argument is designed to permit the batch processing of sound files saved in different directories.
 }
@@ -55,7 +55,7 @@ The \code{full.survey.names} argument is designed to permit the batch processing
 A data frame of metadata about the surveys.  Contains column names "fldOriginalDateModified", "fldOriginalRecordingName", "fldSurveyName", "fldRecordingFormat", "fkCardRecorderID", "fldSurveyLength", "fldSampleRate", "fldBitsperSample", and "fldChannels".  Column names reflect the assumption that this data will become a catalog of surveys stored in the database.
 }
 \references{
-Time zone conversion assisted by a post on David Smith's Revolutions blog, June 02, 2009: \url{http://blog.revolutionanalytics.com/2009/06/converting-time-zones.html}
+Time zone conversion assisted by a post on David Smith's Revolutions blog, June 02, 2009: \url{https://blog.revolutionanalytics.com/2009/06/converting-time-zones.html}
 }
 
 \author{

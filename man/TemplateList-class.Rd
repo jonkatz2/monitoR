@@ -25,7 +25,7 @@
 Classes \code{corTemplateList} and \code{binTemplateList} extend the virtual class \code{TemplateList}, directly.
 }
 \section{Methods}{
-  \itemize{
+  \describe{
     \item{show}{ \code{signature(object = "corTemplateList")}: ... }
     \item{summary}{ \code{signature(object = "corTemplateList")}: ... }
     \item{show}{ \code{signature(object = "binTemplateList")}: ... }
