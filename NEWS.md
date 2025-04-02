@@ -1,9 +1,8 @@
---------------------------------------------------------------------------------
-monitoR 1.0.7
-2018 February 14
---------------------------------------------------------------------------------
+# NEWS for monitoR R package
 
-NEW ARGUMENTS
+# monitoR 1.0.7 2018 February 14
+
+## NEW ARGUMENTS
 *corMatch() and binMatch() now have a "quiet" argument that will suppress console
 messages when set to TRUE (thanks to GitHub user gannebamm). The unused warn 
 argument has been removed.
@@ -11,30 +10,24 @@ argument has been removed.
 *spectro() has a new "..." argument. Now "warn" could be used and passed to 
 binMatch() and corMatch() functions.
 
-BUG FIXES
+## BUG FIXES
 *Minor fixes
 
---------------------------------------------------------------------------------
-monitoR 1.0.5
-2017 February 17
---------------------------------------------------------------------------------
+# monitoR 1.0.5 2017 February 17
 
-CHANGED FUNCTION NAME
+## CHANGED FUNCTION NAME
 *The cutw() function was renamed cutWave() in the last version of monitoR to 
 avoid conflict with the cutw() function in the seewave package. The cutw() 
 function has now been removed.
 
---------------------------------------------------------------------------------
-monitoR 1.0.4
-2015 September 18
---------------------------------------------------------------------------------
-MAILING LIST
+# monitoR 1.0.4 2015 September 18
+## MAILING LIST
 There is now a monitoR mailing list. To subscribe, send a message with the
 subject "monitoR: subscribe" to sdh11@cornell.edu or jonkatz4@gmail.com.
 Subscribers will receive an update whenever a new version of the package or new
 documentation is available.
 
-BUG FIXES
+## BUG FIXES
 *New rec.tz argument in fileCopyRename() and templateMatching(). This optional
 argument can prevent problems resulting from a time zone mismatch between a
 recorder and R (computer operating system), e.g., when the operating system
@@ -42,16 +35,12 @@ adjusts its clock for daylight savings but the recorder does not.
 
 *Other minor bug fixes
 
-CHANGED FUNCTION NAME
+## CHANGED FUNCTION NAME
 *The cutw() function has been renamed cutWave() to avoid conflict with the
 cutw() function in the seewave package. Users can still call cutw() in this
 version of monitoR (with a warning) but it will be removed in the next update.
 
-
---------------------------------------------------------------------------------
-monitoR 1.0.3
-2015 April 23
---------------------------------------------------------------------------------
+# monitoR 1.0.3 2015 April 23
 * Added hours.offset argument to fileCopyRename() for manual override of 
 timezone management.
 
@@ -74,22 +63,13 @@ files.
 * Added option to plot template over detections using argument box="template" 
 in showPeaks().
 
---------------------------------------------------------------------------------
-monitoR 1.0.2
-2014 May 15
---------------------------------------------------------------------------------
+# monitoR 1.0.2 2014 May 15
 * Minor bug fixes.
 
---------------------------------------------------------------------------------
-monitoR 1.0.1
-2014 March 28
---------------------------------------------------------------------------------
+# monitoR 1.0.1 2014 March 28
 * seewave and its dependencies no longer required for installation of monitoR.
 
---------------------------------------------------------------------------------
-2014 March 27
-monitoR 1.0.0
---------------------------------------------------------------------------------
+# 2014 March 27 monitoR 1.0.0
 Initial upload to CRAN.
 
 
