@@ -3,7 +3,7 @@ importFrom("tuneR", "channel", "readWave", "writeWave")
 importFrom("graphics", "abline", "axis", "box", "image", "layout", "legend", "lines", "locator", "mtext", "par", "plot", "points", "polygon", "rect", "text")
 importFrom("grDevices", "dev.list", "gray", "rainbow", "topo.colors")
 importFrom("stats", "cor", "embed", "fft", "na.omit", "quantile", "rnorm", "spline")
-importFrom("utils", "read.csv", "setTxtProgressBar", "txtProgressBar", "write.csv", "write.table")
+importFrom("utils", "read.csv", "setTxtProgressBar", "txtProgressBar", "write.csv", "write.table", "download.file")
 
 export(
   batchBinMatch,
