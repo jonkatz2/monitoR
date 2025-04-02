@@ -82,8 +82,9 @@ dbDownloadTemplate <- function(
         templates <- new('corTemplateList', templates = templates)
     }
     
-    message(if(class(tblTemplate) == 'data.frame') {paste('Done! Download time:', round(Sys.time()-start.time, 2), 'seconds')
-            } else paste("Download unsuccessful; RODBC returned errors: ", paste(tblTemplate, collapse = " ")))
+    message(if(inherits(tblTemplate, 'data.frame')) {
+        paste('Done! Download time:', round(Sys.time()-start.time, 2), 'seconds') 
+    } else paste("Download unsuccessful; RODBC returned errors: ", paste(tblTemplate, collapse = " ")))
     
     return(templates)
 }        

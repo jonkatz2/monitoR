@@ -85,7 +85,7 @@ function(
          xleft <- pks$time[i]-template@duration/2
          ylwr <- template@frq.lim[1]
          # Plot template points
-         if(class(template) == 'binTemplate') {
+         if(inherits(template, 'binTemplate')) {
             pt.on <- template@pt.on
             pt.off <- template@pt.off
             pt.on[, 't'] <- pt.on[, 't'] + ((xleft-min(times))/template@t.step)
@@ -99,7 +99,7 @@ function(
       
             image(x = times, y = frq.bins, t(bin.amp), zlim = c(0, 2), col = c('transparent', on.col, off.col), add = TRUE)
       
-         } else if (class(template) == 'corTemplate') {
+         } else if (inherits(template, 'corTemplate')) {
       
             pts <- template@pts
             pts[, 't'] <- pts[, 't'] + ((xleft-min(times))/template@t.step)

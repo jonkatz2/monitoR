@@ -44,11 +44,11 @@ function(
    }
    if(length(clip) == 2 & !binary)
       warning("binary adjusted to TRUE for two clips", immediate. = TRUE)
-   if(class(amp.cutoff) != "numeric" & amp.cutoff != "i") {
+   if(!inherits(amp.cutoff, "numeric") & amp.cutoff != "i") {
       warning("amp.cutoff value not recognized, so set to \"i\" for interactive", immediate. = TRUE)
       amp.cutoff = "i"
    }
-   if(class(shift) != "numeric" & shift != "i") {
+   if(!inherits(shift, "numeric") & shift != "i") {
       warning("shift value not recognized, so set to \"i\" for interactive", immediate. = TRUE)
       shift = "i"
    }
@@ -364,7 +364,7 @@ function(
    } else if(length(clip) == 2) {
 ##### Two clips ##### 
       if(is.na(t.lim[1])) t.lim <- list(NA, NA)
-      if(class(t.lim) != "list") stop("Supplied two clips, so t.lim must be a list of length 2.")
+      if(!inherits(t.lim, "list")) stop("Supplied two clips, so t.lim must be a list of length 2.")
 #      if(class(t.lim) != "list" || length(t.lim) != 2) stop("Supplied two clips, so t.lim must be a list of length 2.")
       clip.path <- clip[[2]]
       first.t.bin <- t.lim[[2]][2]

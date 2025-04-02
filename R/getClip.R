@@ -9,7 +9,7 @@ getClip <- function(
   write.wav = FALSE
 ) {
 
-  if(class(clip) == "list" | (class(clip) == "character" && length(clip)>1)) {
+  if(inherits(clip, "list") | (inherits(clip, "character") && length(clip)>1)) {
     clist <- list()
     if(grepl(", ",name)) {
       name <- gsub(".*\\(", "", name)
@@ -34,7 +34,7 @@ getOneClip <- function(
 ) {
 
   if(output == "file") {
-    if(class(clip) == "Wave") {
+    if(inherits(clip, "Wave")) {
       fname <- paste0(name, ".wav")
       if(!write.wav) {
 	warning("output argument is \"file\" but write.wav argument is FALSE.\nFor better or worse, the monitoR package was designed to use acoustic files, so a temporary file will be used here.\nSet write.wav = TRUE to create a (non-temporary) file, or else specify a wav file instead of a Wave object.")
@@ -44,7 +44,7 @@ getOneClip <- function(
       else tuneR::writeWave(clip, fname) 
       return(fname)
     } else 
-    if(class(clip) == "character") {
+    if(inherits(clip, "character")) {
       if (grepl('^www.|^http:|^https:', clip)) {
         warning('It looks like clip argument is a URL, so (trying to) download and save an audio file')
         fname <- tempfile(fileext = substr(clip, nchar(clip) - 4, nchar(clip)))
@@ -58,10 +58,10 @@ getOneClip <- function(
   }
 
   if(output == "Wave") {
-    if(class(clip) == "Wave") {
+    if(inherits(clip, "Wave")) {
       return(clip)
     } else 
-    if(class(clip) == "character") {
+    if(inherits(clip, "character")) {
       if (grepl('^www.|^http:|^https:', clip)) {
         warning('It looks like clip argument is a URL, so (trying to) download and save an audio file')
         fname <- tempfile(fileext = substr(clip, nchar(clip) - 4, nchar(clip)))
@@ -84,7 +84,7 @@ getOneClip <- function(
 # Reads a single wav or mp3 file 
 readClip <- function(clip) {
 
-  if(class(clip) != "character" | length(clip) != 1) stop("Expected a length-one character vector for clip, but got a length ", length(clip), " ", class(clip), " object.")
+  if(!inherits(clip, "character") | length(clip) != 1) stop("Expected a length-one character vector for clip, but got a length ", length(clip), " ", class(clip), " object.")
   if(!file.exists(clip)) stop("clip argument seems to be a file name but no file with the name ", clip, " exists!")
  
   file.ext <- tolower(gsub(".*\\.", "", clip))

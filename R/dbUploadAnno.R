@@ -17,7 +17,7 @@ dbUploadAnno <- function(
     }  
 
     start.time <- Sys.time()
-    if(any(missing(survey), class(survey) != 'character', length(survey)>1)) stop("Must specify 1 survey name (cannot be a wave object).")
+    if(any(missing(survey), !inherits(survey, 'character'), length(survey)>1)) stop("Must specify 1 survey name (cannot be a wave object).")
     
     # open the database connection
     if(missing(uid) && missing(pwd)) {dbCon <- RODBC::odbcConnect(db.name, ...)
@@ -25,7 +25,7 @@ dbUploadAnno <- function(
     } else dbCon <- RODBC::odbcConnect(db.name, uid, pwd, ...)
     
     # Read in annotations, if necessary
-    if(class(annotations) == 'character') { 
+    if(inherits(annotations, 'character')) { 
       file.ext <- tolower(gsub(".*\\.", "", annotations))
       if(file.ext == 'csv') annotations <- read.csv(annotations) 
       else stop('File extension must be csv, got ', file.ext)

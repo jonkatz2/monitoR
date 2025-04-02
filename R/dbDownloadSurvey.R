@@ -79,7 +79,7 @@ dbDownloadSurvey <- function(
     # Download the names of the surveys 
     surveys <- RODBC::sqlQuery(dbCon, query, stringsAsFactors = FALSE)
     
-    message(if(class(surveys) == 'data.frame') {paste('Done! Download time:', round(Sys.time()-start.time, 2), 'seconds')
+    message(if(inherits(surveys, 'data.frame')) {paste('Done! Download time:', round(Sys.time()-start.time, 2), 'seconds')
             } else paste("Download unsuccessful; RODBC returned errors: ", paste(surveys, collapse = " ")))
     
     return(surveys)

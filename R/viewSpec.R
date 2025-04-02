@@ -26,7 +26,7 @@ function(
 ){
 
    # Single recording
-   if(class(clip) == 'character' & class(clip) != 'Wave') { 
+   if(inherits(clip, 'character') & !inherits(clip, 'Wave')) { 
       file.ext <- tolower(gsub(".*\\.", "", clip))
       # Read header
       if(file.ext == 'wav') {
@@ -37,9 +37,9 @@ function(
          rec.dur <- size/bps
          header <- list('sample.rate' = mp3.meta[['samp.rate']], 'samples' = rec.dur*mp3.meta[['samp.rate']], 'channels' = mp3.meta[['stereo']]+1)
       } else stop('File extension must be wav or mp3, got ', file.ext)
-   } else if(class(clip) == 'Wave') {
+   } else if(inherits(clip, 'Wave')) {
       header <- list('sample.rate' = clip@samp.rate, 'samples' = length(clip@left), 'channels' = clip@stereo+1)
-   } else if(class(clip) != 'Wave') {
+   } else if(!inherits(clip, 'Wave')) {
       stop(paste('Expect file path or wave object for wave argument, got ', clip))
    }
    # Convert units to seconds
@@ -137,7 +137,7 @@ function(
     }
    # View a spectrogram only
     if(!interactive) {
-       if(class(clip) != 'Wave') {
+       if(!inherits(clip, 'Wave')) {
             if(file.ext == 'wav') {wave <- tuneR::channel(tuneR::readWave(filename = clip, from = start.time, to = start.time+page.length, units = 'seconds'), which = channel) 
             } else if(file.ext == 'mp3') {
                 temp.page.l <- page.length+2
@@ -148,7 +148,7 @@ function(
         } else wave <- tuneR::channel(cutWave(wave = clip, from = start.time, to = min(start.time+page.length, length(clip@left)/clip@samp.rate)), which = channel)
         t.wave <- length(wave@left)/wave@samp.rate
         if(t.wave<page.length) page.length <- t.wave
-        if(is.null(main) && class(clip) == 'Wave') {#main <- 'Existing wave object'
+        if(is.null(main) && inherits(clip, 'Wave')) {#main <- 'Existing wave object'
             main <- as.character(sys.call(sys.parent(n = 1)))[2]
         } else if(is.null(main)) main <- strsplit(clip, '/')[[1]][length(strsplit(clip, '/')[[1]])]
         specPlot(wave = wave, frq.lim = frq.lim, channel = channel, consistent = consistent, page.length = page.length, quiet = TRUE, wl = wl, ovlp = ovlp, wn = wn, main = main, ...)
@@ -156,7 +156,7 @@ function(
     } else { 
        while(start.time<header$samples/header$sample.rate) {
           cat('Reading file...\n')
-          if(class(clip) != 'Wave') {
+          if(!inherits(clip, 'Wave')) {
              if(file.ext == 'wav') {wave <- tuneR::channel(tuneR::readWave(filename = clip, from = start.time, to = start.time+page.length, units = 'seconds'), which = channel)
              } else if(file.ext == 'mp3') {
                 temp.page.l <- page.length+2
@@ -170,7 +170,7 @@ function(
           }
           t.wave <- length(wave@left)/wave@samp.rate
           if(t.wave<page.length) page.length <- t.wave
-          if(is.null(main) && class(clip) == 'Wave') {#main <- 'Existing wave object'
+          if(is.null(main) && inherits(clip, 'Wave')) {#main <- 'Existing wave object'
             main <- as.character(sys.call(sys.parent(n = 1)))[2]
           } else if(is.null(main)) main <- strsplit(clip, '/')[[1]][length(strsplit(clip, '/')[[1]])]
           step <- specPlot(wave = wave, frq.lim = frq.lim, channel = channel, consistent = consistent, page.length = page.length, wl = wl, ovlp = ovlp, wn = wn, main = main, ...)
@@ -264,7 +264,7 @@ function(
           } else if(x != "" && x == 'x') {
              page.length <- page.length*2
           } else if(x != "" && x == 's') {
-             if(class(clip) == 'Wave') {
+             if(inherits(clip, 'Wave')) {
                 save.dir <- paste(output.dir, '/Exerpt', sep = "")
              } else {
                 f.name <- strsplit(clip, '/')[[1]][length(strsplit(clip, '/')[[1]])]

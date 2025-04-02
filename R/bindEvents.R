@@ -10,7 +10,7 @@ function(
 ) {
 
    # Read in the event file
-   if(class(file) != "data.frame") events <- read.csv(file = file)
+   if(!inherits(file, 'data.frame')) events <- read.csv(file = file)
    else events <- file
    events['duration'] <- events[, 'end.time']-events[, 'start.time']
    if(by.species) {

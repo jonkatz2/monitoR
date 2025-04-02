@@ -37,7 +37,7 @@ function(
       }
    }
 
-   if(class(object) == "detectionList") object <- findDetections(object, keep.verify = TRUE)
+   if(inherits(object, "detectionList")) object <- findDetections(object, keep.verify = TRUE)
    return(object)
 
 }

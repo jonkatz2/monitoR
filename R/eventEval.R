@@ -15,26 +15,27 @@ eventEval <- function(
     # cut the tolerance value in half to produce a +/- time buffer
     tol <- 0.5*tol
     # Some minor class checking to extract the detection data
-    if(class(detections) == "detectionList") {
+    if(inherits(detections, "detectionList")) {
         dbDetect <- FALSE
         if(tolower(what) %in% c("detections", "d", "det", "hits")) {getter <- "getDetections"
         } else if(tolower(what) %in% c("peaks", "p", "pks")) getter <- "getPeaks"
         if(missing(which.one) || length(which.one)>1) {stop("Specify 1 'which.one'.")
         } else detections <- do.call(getter, list(detection.obj = detections, which.one = which.one))
         detections <- detections[detections['template'] == which.one, ]
-    } else if(class(detections) == "data.frame") {
+    } else if(inherits(detections, "data.frame")) {
         if(all(c("fldTime", "fldScore") %in% names(detections))) {dbDetect <- TRUE
         } else if(all(c("time", "score") %in% names(detections))) dbDetect <- FALSE
-    } else if(class(detections) == "character") {
+    } else if(inherits(detections, "character")) {
         if(tolower(gsub(".*\\.", "", detections)) == 'csv') detections <- read.csv(detections)
         else stop("'detections' must be a detectionList object, a file path to a csv file with a recognizable format, or data frame with a recognizable format.")
         # Check to see if detections were originally from the database
         if("fldTime" %in% names(detections)) {dbDetect <- TRUE
         } else stop('Detections must either be a detectionList object or an equivalent data frame (e.g. from the database).')
-    } else if(class(detections) != "data.frame" || all(!c("fldTime", "time", "template") %in% names(detections))) stop("'detections' must be a detectionList object, a file path to a csv file with a recognizeable format, or data frame with a recognizeable format.")
+    } else if(!inherits(detections, "data.frame") || all(!c("fldTime", "time", "template") %in% names(detections))) stop("'detections' must be a detectionList object, a file path to a csv file with a recognizeable format, or data frame with a recognizeable format.")
     # Some minor class checking to read in the standard
-    if(class(standard) == "character") {detections <- read.csv(standard)
-    } else if(class(standard) != "data.frame") stop("'standard' must be a file path or a data frame.")
+    if(inherits(standard, "character")) {
+        detections <- read.csv(standard)
+    } else if(!inherits(standard, "data.frame")) stop("'standard' must be a file path or a data frame.")
     # Check to see if standard was originally from the database
     if(all(c("fldTime", "fldTemplateName") %in% names(standard))) {dbStandard <- TRUE
     } else if(all(c("start.time", "name") %in% names(standard))) {dbStandard <- FALSE

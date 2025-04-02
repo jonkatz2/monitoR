@@ -59,7 +59,7 @@ dbDownloadCardRecorderID <- function(
     # Download the query 
     cardrecorder <- RODBC::sqlQuery(dbCon, query)
     
-    message(if(class(cardrecorder) == 'data.frame') {paste('Done! Download time:', round(Sys.time()-start.time, 2), 'seconds')
+    message(if(inherits(cardrecorder, 'data.frame')) {paste('Done! Download time:', round(Sys.time()-start.time, 2), 'seconds')
             } else paste("Download unsuccessful; RODBC returned errors: ", paste(cardrecorder, collapse = " ")))
     
     return(cardrecorder)

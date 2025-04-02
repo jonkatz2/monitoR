@@ -12,15 +12,16 @@ timeAlign <- function(
     # cut the tolerance value in half to produce a +/- time buffer
     tol <- 0.5*tol
     # character class items are assumed to be file paths to csv files...check
-    if(class(x) == 'detectionList' && tolower(what) %in% c('detections', 'd', 'det')) {
+    if(inherits(x, 'detectionList') && tolower(what) %in% c('detections', 'd', 'det')) {
       cat('Getting detections\n')
       all.results <- getDetections(x)
-    } else if(class(x) == 'detectionList' && tolower(what) %in% c('peaks', 'p', 'pks')) {
+    } else if(inherits(x, 'detectionList') && tolower(what) %in% c('peaks', 'p', 'pks')) {
       cat('Getting peaks\n')
       all.results <- getPeaks(x)
-    } else if(class(x) == 'data.frame') {all.results <- x
-    } else if(class(x) == 'list') {
-      check.class <- unlist(lapply(as.list(x), function(file) class(file)))
+    } else if(inherits(x, 'data.frame')) {
+      all.results <- x
+    } else if(inherits(x, 'list')) {
+      check.class <- unlist(lapply(as.list(x), function(file) class(file)[1]))
         if(all(check.class == 'character')) {
             all.results <- lapply(x, function(file) {
               chars <- nchar(file)

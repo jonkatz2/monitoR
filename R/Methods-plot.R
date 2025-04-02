@@ -57,7 +57,7 @@ setMethod('plot', signature(x = 'TemplateList', y = 'ANY'),
       mtext(paste('Template', i), 3,line = 3, cex = 1.2)
    
       # Plot template points
-      if(class(x) == 'binTemplateList') {
+      if(inherits(x, 'binTemplateList')) {
   
         pt.on <- template@pt.on
         pt.off <- template@pt.off
@@ -70,7 +70,7 @@ setMethod('plot', signature(x = 'TemplateList', y = 'ANY'),
   
         image(x = which.t.bins, y = which.frq.bins, t(bin.amp), zlim = c(0, 2), col = c('transparent', on.col, off.col), add = TRUE)
   
-      } else if (class(x) == 'corTemplateList') {
+      } else if (inherits(x, 'corTemplateList')) {
   
         pts <- template@pts
         pts[, 'frq'] <- pts[, 'frq'] - min(which.frq.bins) + 1
