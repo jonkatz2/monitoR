@@ -55,7 +55,7 @@ The \code{full.survey.names} argument is designed to permit the batch processing
 A data frame of metadata about the surveys.  Contains column names "fldOriginalDateModified", "fldOriginalRecordingName", "fldSurveyName", "fldRecordingFormat", "fkCardRecorderID", "fldSurveyLength", "fldSampleRate", "fldBitsperSample", and "fldChannels".  Column names reflect the assumption that this data will become a catalog of surveys stored in the database.
 }
 \references{
-Time zone conversion assisted by a post on David Smith's Revolutions blog, June 02, 2009: \url{https://blog.revolutionanalytics.com/2009/06/converting-time-zones.html}
+Time zone conversion assisted by a post on David Smith's Revolutions blog, June 02, 2009: https://blog.revolutionanalytics.com/2009/06/converting-time-zones.html
 }
 
 \author{
