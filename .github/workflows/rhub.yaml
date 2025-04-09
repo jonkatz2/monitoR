@@ -64,10 +64,10 @@ jobs:
         with:
           token: ${{ secrets.RHUB_TOKEN }}
           job-config: ${{ matrix.config.job-config }}
-      - name: Set up TeX Live
+      - name: Setup TeX Live
         uses: teatimeguest/setup-texlive-action@v3
         with:
-          packages:  |
+          packages: |
             scheme-medium
             xcolor
             framed             
@@ -100,18 +100,13 @@ jobs:
         with:
           job-config: ${{ matrix.config.job-config }}
           token: ${{ secrets.RHUB_TOKEN }}
-      - name: Set up TeX Live
+      - name: Setup TeX Live
         uses: teatimeguest/setup-texlive-action@v3
         with:
-          packages:  |
+          packages: |
             scheme-medium
             xcolor
             framed             
-      - uses: r-hub/actions/run-check@v1
-        with:
-          token: ${{ secrets.RHUB_TOKEN }}
-          job-config: ${{ matrix.config.job-config }}
-
       - uses: r-hub/actions/run-check@v1
         with:
           job-config: ${{ matrix.config.job-config }}
