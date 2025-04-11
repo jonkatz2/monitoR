@@ -1,5 +1,21 @@
 # NEWS for monitoR R package
 
+# monitoR 1.2 2025 April 11
+## BUG FIXES
+* A few issues on R-devel and even R-release. 
+  Includes some R code and DESCRIPTION file.
+  See issues [#23](https://github.com/jonkatz2/monitoR/issues/23)
+  and [#19](https://github.com/jonkatz2/monitoR/issues/19).
+  No changes in functionality expected.
+
+# monitoR 1.1 2024 March 21
+## FUNCTIONALITY
+* `binMatch()` and `corMatch()` can now work with Wave objects without using `write.wav = TRUE`.
+  See issue [#21](https://github.com/jonkatz2/monitoR/issues/21)
+
+## BUG FIXES
+*A few fixes. See issue [#18](https://github.com/jonkatz2/monitoR/issues/18).
+
 # monitoR 1.0.7 2018 February 14
 
 ## NEW ARGUMENTS
