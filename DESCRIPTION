@@ -1,9 +1,38 @@
 Package: monitoR
 Type: Package
 Title: Acoustic Template Detection in R
-Version: 1.1.7
-Date: 2025-04-09
-Author: Sasha D. Hafner <sasha.hafner@bce.au.dk> and Jon Katz <jonkatz4@gmail.com>, with code for the Fourier transform from the seewave package (by Jerome Sueur, Thierry Aubin, and Caroline Simonis), and code for the readMP3 function from the tuneR package (by Uwe Ligges). Therese Donovan provided creative direction and database design support. 
+Version: 1.1.8
+Date: 2025-04-10
+Authors@R: c(person(given = c("Sasha", "D."),
+                    family = "Hafner",
+                    role = c("aut", "cre"),
+                    email = "sasha.hafner@bce.au.dk",
+                    comment = c(ORCID = "0000-0003-0955-0327")),
+             person(given = "Jon",
+                    family = "Katz",
+                    role = "aut",
+                    email = "jonkatz4@gmail.com"),
+             person(given = "Jerome",
+                    family = "Sueur",
+                    role = "aut",
+                    comment = "seewave package author (code from Fourier transform used in monitoR)"),
+             person(given = "Thierry",
+                    family = "Aubin",
+                    role = "aut",
+                    comment = "seewave package author (code from Fourier transform used in monitoR)"),
+             person(given = "Caroline",
+                    family = "Simonis",
+                    role = "aut",
+                    comment = "seewave package author (code from Fourier transform used in monitoR)"),
+             person(given = "Uwe",
+                    family = "Ligges",
+                    role = "aut",
+                    comment = "tuneR package author (code from readMP3() used in monitoR)"),
+             person(given = "Therese",
+                    family = "Donovan",
+                    role = "ctb",
+                    comment = "creative direction and database design support")
+                     )
 Maintainer: Sasha D. Hafner <sasha.hafner@bce.au.dk>
 Depends: tuneR, methods
 Imports: graphics, grDevices, stats, utils
